@@ -80,3 +80,6 @@ objFunction = function (obj) {
     console.log("".concat(obj.name, " is ").concat(obj.age, " years old."));
 };
 objFunction({ name: "Mark", age: 23 });
+// DOM and Type Casting
+var form = document.querySelector('.new-item-form');
+console.log(form.childeren);

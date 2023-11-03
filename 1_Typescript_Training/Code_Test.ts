@@ -139,3 +139,10 @@ objFunction = (obj:myObj) =>{
 }
 
 objFunction({name: "Mark", age: 23});
+
+
+
+// DOM and Type Casting
+const form = document.querySelector('.new-item-form') as HTMLFormElement;
+
+console.log(form.childeren);
