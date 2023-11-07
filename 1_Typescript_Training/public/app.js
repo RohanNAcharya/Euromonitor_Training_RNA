@@ -1,4 +1,18 @@
 "use strict";
+const me = {
+    name: "Rohan",
+    age: 23,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+const greetPerson = (person) => {
+    console.log('hello ', person.name);
+};
 // import { Invoice } from './classes/Invoice.js'
 class Invoice {
     // readonly client: string;
