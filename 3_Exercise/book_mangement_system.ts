@@ -350,7 +350,7 @@ function getUserInput(){
                                 userOperations();
                             }
                             else{
-                                console.log('Thank You Admin!\nExiting the program.\n');
+                                console.log('Thank You User!\nExiting the program.\n');
                                 rl.close();
                                 return;
                             }
