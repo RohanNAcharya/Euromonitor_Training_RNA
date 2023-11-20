@@ -1,5 +1,5 @@
 .header{
-    height: 200px;
+    height: 280px;
     padding: 30px 40px;
     display: flex;
     background-color: #fff;
@@ -9,6 +9,7 @@
     width: 420px;
     margin-left: 50px;
     text-align: center;
+    font-size: 25px;
 }
 
 h2{
