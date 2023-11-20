@@ -23,7 +23,6 @@ class BankApplication{
 
     setAccountType(accountType:string){
         this.custAccountType = accountType;
-        
     }
 
     setAccountName(name:string){
