@@ -20,7 +20,7 @@ class UserApiService {
         }
     }
 
-    displayUsersData(userData):void{
+    public displayUsersData(userData):void{
         const userDataContainer = document.getElementById("userData")!;
     
         userDataContainer.innerHTML = "";
@@ -33,14 +33,14 @@ class UserApiService {
             <div class="email"><p>${user.email}</p></div>
             <div class="image"><img src="${user.avatar}" alt="${`${user.first_name} ${user.last_name}`}")"></div>
             `;
-            userCard.addEventListener("click", () => { this.directToNext(user.id, user.first_name, user.last_name, user.email, user.avatar) });
+            userCard.addEventListener("click", () => { this.passDataToNextPage(user.id, user.first_name, user.last_name, user.email, user.avatar) });
     
             userDataContainer.appendChild(userCard);
         });
     
     }
     
-    directToNext(userID: number, userFirstName, userLastName, userEmail, userAvatar):void {
+    private passDataToNextPage(userID: number, userFirstName, userLastName, userEmail, userAvatar):void {
         window.location.href = `userDetails.html?userId=${userID}&firstName=${userFirstName}&lastName=${userLastName}&email=${userEmail}&avatar=${userAvatar}`;
     }
 }

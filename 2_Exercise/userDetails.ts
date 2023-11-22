@@ -15,7 +15,7 @@ class userPageDetails{
         this.avatar = urlParams.get('avatar');
     }
 
-    openNewPage(){
+    public displayCurrentUserDetails(){
         const newPageContent = document.getElementById("userDetailContainer")!;
         newPageContent.innerHTML = `        
             <div class="newPage-image">
@@ -41,5 +41,5 @@ class userPageDetails{
 
 
 let userPage = new userPageDetails();
-userPage.openNewPage();
+userPage.displayCurrentUserDetails();
 
