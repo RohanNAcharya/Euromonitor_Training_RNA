@@ -17,111 +17,106 @@ class BankApplicationMain{
     constructor(){
         this.options = "1. Create an Account\n2. Check Balance\n3. Withdrawal\n4. Deposit\n5. View Account Details\n6. Exit\nEnter your choice:";
     }
-    async getUserInput():Promise<void> {
-        const userInput = await this.askQuestion(this.options);
+
+    public async getUserInput():Promise<void> {
+        const userInput = await this.question(this.options);
         if(userInput == '1') {
-            await this.handleAccountType()
+            await this.inputAccountType()
         }
         else if(userInput == '2'){
-            await this.handleAccountBalance()
+            await this.fetchAccountBalance()
         }
         else if(userInput == '3'){
-            await this.handleWithdrawal()
+            await this.withdrawalOperation()
         }
         else if(userInput == '4'){
-            await this.handleDeposits()
+            await this.depositsOperation()
         }
         else if(userInput == '5'){
-            await this.handleAccountDetails()
+            await this.fetchAccountDetails()
         }
         else if(userInput == '6'){
-            this.handleExit()
+            this.exitMenu()
         }
         else{
             console.log("Invalid Input!");
         }
-        this.likeToContinue();
+        this.repeatMenu();
     }
 
-    async handleAccountType():Promise<void>{
-        const accountType = await this.askQuestion("1. Savings\n2. Current\nEnter the Type of account: ");
+    public async inputAccountType():Promise<void>{
+        const accountType = await this.question("1. Savings\n2. Current\nEnter the Type of account: ");
         if (accountType=='1') {
             let savAccObj = new SavingsAccount();
-            await this.getUserDetails(savAccObj);
+            await this.inputUserDetails(savAccObj);
         }
         else if (accountType=='2') {
             let currAccObj = new CurrentAccount();
-            await this.getUserDetails(currAccObj);
+            await this.inputUserDetails(currAccObj);
         }
         else{
             console.log("Invalid Input");
         }
     }
 
-    async handleAccountBalance():Promise<void>{
+    public async fetchAccountBalance():Promise<void>{
         let bankObj = new BankApplication();
-        let accountNumber = await this.askQuestion("Enter account number to check balance: ");
+        let accountNumber = await this.question("Enter account number to check balance: ");
         bankObj.getBalance(accountNumber);
     }
     
-    async handleWithdrawal():Promise<void>{
+    public async withdrawalOperation():Promise<void>{
         let bankObj = new BankApplication();
-        let accountNumber = await this.askQuestion("Enter account number to withdraw amount: ");
-        let amount = await this.askQuestion("Enter withdraw amount: ");
+        let accountNumber = await this.question("Enter account number to withdraw amount: ");
+        let amount = await this.question("Enter withdraw amount: ");
         bankObj.withdrawal(accountNumber, amount);
     }
     
-    async handleDeposits():Promise<void>{
+    public async depositsOperation():Promise<void>{
         let bankObj = new BankApplication();
-        let accountNumber = await this.askQuestion("Enter account number to deposit amount: ");
-        let amount = await this.askQuestion("Enter deposit amount: ");
+        let accountNumber = await this.question("Enter account number to deposit amount: ");
+        let amount = await this.question("Enter deposit amount: ");
         bankObj.deposit(accountNumber, amount);
     }
     
-    async handleAccountDetails():Promise<void>{
+    public async fetchAccountDetails():Promise<void>{
         let bankObj = new BankApplication();
-        let accountNumber = await this.askQuestion("Enter account number to check account details: ");
+        let accountNumber = await this.question("Enter account number to check account details: ");
         bankObj.getAccountDetails(accountNumber);
     }
     
-    handleExit():void{
+    public exitMenu():void{
         console.log("Exiting!");
         process.exit(0);
     }
     
-    async getUserDetails(obj):Promise<void> {
-        const name = await this.askQuestion("Enter Your Name:");
+    public async inputUserDetails(obj):Promise<void> {
+        const name = await this.question("Enter Your Name:");
         
-        let age = await this.askQuestion("Enter Age:");
-        let ageResult:Boolean = await this.ageValidate(age, obj);
+        let age = await this.question("Enter Age:");
+        let ageResult:Boolean = await this.validateAge(age, obj);
         if(!ageResult){
             console.log("Entered Age is not valid. Age entry limit exhausted!")
             return;
         }
     
-        const location = await this.askQuestion("Enter Location:");
-        const state = await this.askQuestion("Enter State:");
-        const country = await this.askQuestion("Enter Country:");
+        const location = await this.question("Enter Location:");
+        const state = await this.question("Enter State:");
+        const country = await this.question("Enter Country:");
     
-        let email = await this.askQuestion("Enter Email:");
+        let email = await this.question("Enter Email:");
         let emailResult:Boolean = await this.validateEmail(email, obj);
         if(!emailResult){
             return;
         }
     
-        const amount = await this.askQuestion("Enter Initial Amount:");
+        const amount = await this.question("Enter Initial Amount:");
         const message = obj.validateInitialAmount(Number(amount));
     
         if (message === 'valid') {
             obj.setAccountNumber();
-            obj.setAccountName(name);
-            obj.setAccountAge(age);
-            obj.setAccountLocation(location);
-            obj.setAccountState(state);
-            obj.setAccountCountry(country);
-            obj.setAccountEmail(email);
-            obj.setInitialAmount(amount);
-            obj.setAllAccountDetails();
+            obj.setAccountInstance(name, age, location, state, country, email, Number(amount));
+            obj.setAccountDetails();
             console.log("Account Created!");
             obj.getAccountNumber();
         } else {
@@ -130,24 +125,24 @@ class BankApplicationMain{
         }
     }
     
-    async ageValidate(age, obj):Promise<Boolean>{
+    public async validateAge(age, obj):Promise<Boolean>{
         if(/^\d+$/.test(age) && obj.validateAge(Number(age)))
         {
             return true;
         }
         else if (!/^\d+$/.test(age)) {
             console.log("Age must be a valid number. Enter again!");
-            age = await this.askQuestion("Enter Age again:");
-            return this.ageValidateCondition(age, obj);
+            age = await this.question("Enter Age again:");
+            return this.ageValidationCondition(age, obj);
         }
         else{
             console.log("The entered age is not valid for account opening.");
-            age = await this.askQuestion("Enter Age again:");
-            return this.ageValidateCondition(age, obj);
+            age = await this.question("Enter Age again:");
+            return this.ageValidationCondition(age, obj);
         }
     }
     
-    ageValidateCondition(age, obj):Boolean{
+    public ageValidationCondition(age, obj):Boolean{
         if(/^\d+$/.test(age) && obj.validateAge(Number(age)))
         {
             return true;
@@ -157,14 +152,14 @@ class BankApplicationMain{
         }
     }
     
-    async validateEmail(email, obj):Promise<Boolean>{
+    public async validateEmail(email, obj):Promise<Boolean>{
         if(obj.validateEmail(email)){
             return true
         }
         else
         {
             console.log("The entered email is not valid. Enter again!");
-            email = await this.askQuestion("Enter email again:");
+            email = await this.question("Enter email again:");
             if(obj.validateEmail(email)){
                 return true
             }
@@ -175,13 +170,13 @@ class BankApplicationMain{
         }
     }
     
-    askQuestion(question: string): Promise<string> {
+    public question(question: string): Promise<string> {
         return new Promise((resolve) => {
             rl.question(question, resolve);
         });
     }
     
-    likeToContinue():void{
+    public repeatMenu():void{
         rl.question("Would you like to continue? Y-Yes or N-No: ", (userChoice)=>{
             if(userChoice.toLowerCase()=='y'){
                 this.getUserInput();
@@ -194,7 +189,6 @@ class BankApplicationMain{
         });
     }
 }
-
 
 
 

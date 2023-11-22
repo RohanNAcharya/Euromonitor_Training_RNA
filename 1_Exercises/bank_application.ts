@@ -10,35 +10,17 @@ export class BankApplication{
     public custAccountNumber:string;
     public custBalance:number;
 
-    setAccountName(name:string):void{
+    public setAccountInstance(name:string, age:number, location:string, state:string, country:string, email:string, initialAmount:number):void{
         this.custName = name;
-    }
-
-    setAccountAge(age:number):void{
         this.custAge = age;
-    }
-
-    setAccountLocation(location:string):void{
         this.custLocation = location;
-    }
-
-    setAccountState(state:string):void{
         this.custState = state;
-    }
-
-    setAccountCountry(country:string):void{
         this.custCountry = country;
-    }
-
-    setAccountEmail(email:string):void{
         this.custEmailId = email;
-    }
-
-    setAccountBalance(initialAmount:number):void{
         this.custBalance = initialAmount;
     }
 
-    validateAge(age:number):Boolean{
+    public validateAge(age:number):Boolean{
         if(age>68)
         {
             return false;
@@ -46,7 +28,7 @@ export class BankApplication{
         return true;
     }
 
-    validateEmail(email:string):Boolean{
+    public validateEmail(email:string):Boolean{
         const emailRegex = /^[A-Za-z0-9.-_]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
         if (!emailRegex.test(email)){
             return false;
@@ -54,11 +36,11 @@ export class BankApplication{
         return true;
     }
 
-    getAccountNumber():void{
+    public getAccountNumber():void{
         console.log(`Please note your account number:${this.custAccountNumber}`);
     }
 
-    getBalance(accountNumber):void{
+    public getBalance(accountNumber):void{
         let accountDetails = BankApplication.bankAccounts.get(accountNumber.toLowerCase());
         if(!accountDetails){
             console.log("The entered account number is invalid");
@@ -68,7 +50,7 @@ export class BankApplication{
         }
     }
 
-    withdrawal(accountNumber, withdrawAmount):void{
+    public withdrawal(accountNumber, withdrawAmount):void{
         if(BankApplication.bankAccounts.has(accountNumber.toLowerCase())){
             let accountDetails = BankApplication.bankAccounts.get(accountNumber.toLowerCase());
             if(accountDetails){
@@ -98,7 +80,7 @@ export class BankApplication{
         }
     }
 
-    deposit(accountNumber, depositAmount):void{
+    public deposit(accountNumber, depositAmount):void{
         if(BankApplication.bankAccounts.has(accountNumber.toLowerCase())){
             let accountDetails = BankApplication.bankAccounts.get(accountNumber.toLowerCase());
             if(accountDetails){
@@ -112,7 +94,7 @@ export class BankApplication{
         }
     }
 
-    getAccountDetails(accountNumber):void{
+    public getAccountDetails(accountNumber):void{
         if(BankApplication.bankAccounts.has(accountNumber.toLowerCase())){
             let accountDetails = BankApplication.bankAccounts.get(accountNumber.toLowerCase());
             if(accountDetails){

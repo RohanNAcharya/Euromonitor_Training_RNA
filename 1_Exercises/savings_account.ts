@@ -1,21 +1,17 @@
 import { BankApplication } from "./bank_application";
 export class SavingsAccount extends BankApplication{
-    setAccountNumber():void{
+    public setAccountNumber():void{
         this.custAccountNumber = 'SAV' + Math.floor(Math.random() * 1000000);
     }
 
-    setInitialAmount(initialAmount:number):void{
-        this.custBalance = initialAmount;
-    }
-
-    validateInitialAmount(initialAmount:number):string{
+    public validateInitialAmount(initialAmount:number):string{
         if(initialAmount>500){
             return 'valid';
         }
         return "Initial Amount should be a minimum of Rs 500!";
     }
 
-    setAllAccountDetails():void{
+    public setAccountDetails():void{
         let tempAccountDetail = {
             "account_type": "Savings",
             "name": this.custName,
