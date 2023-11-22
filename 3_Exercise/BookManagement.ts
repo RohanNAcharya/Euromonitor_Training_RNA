@@ -121,7 +121,6 @@ export class BookManagement{
             {
                 book!['available'] = true;
                 user!['issuedBooks'] = user!['issuedBooks'].filter(id => id!=bookId);
-                console.log(user);
                 BookManagement.allUsers.set(userId, user!);
                 BookManagement.bookList.set(bookId, book!);
             }
