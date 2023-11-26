@@ -1,0 +1,68 @@
+/* Add this style to your component's CSS file */
+
+.course-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  
+  .course-card {
+    width: 30%; /* Adjust this percentage based on your design */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-sizing: border-box;
+    width: calc(30% - 20px);
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; 
+  }
+  
+  .course-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .course-name {
+    margin-top: 10px;
+  }
+  
+  .course-description {
+    margin-top: 10px;
+  }
+  
+  .details {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .course-type {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .course-button {
+    margin-top: 10px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .btn-buy {
+    background-color: #4caf50; /* Green */
+    color: white;
+  }
+  
+  .btn-show {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
