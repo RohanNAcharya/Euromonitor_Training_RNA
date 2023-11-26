@@ -1,0 +1,104 @@
+.search-container{
+    margin-left: 10px;
+    padding: 20px 50px;
+    display: flex;
+}
+
+.text-box{
+    width: 600px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    padding: 5px;
+    font-size: 20px;
+}
+
+
+.add-button{
+    border:none;
+    margin-left: 20px;
+    color: white;
+    background-color: rgb(45, 45, 202);
+    width: 150px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover{
+    background-color: rgb(97, 97, 190);
+}
+
+.task-container{
+    display: flex;
+    margin-left: 45px;
+    margin-right: 45px;
+    padding: 20px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.every-task{
+    width: 70%;
+    display: flex;
+    align-items: center; /* Center vertically */
+    font-size: 20px;
+}
+
+.done-button{
+    border:none;
+    margin-left: 20px;
+    padding: 10px 10px;
+    background-color: green;
+    color: white;
+    width: 15%;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button{
+    border:none;
+    margin-left: 20px;
+    padding: 10px 10px;
+    background-color: red;
+    color: white;
+    width: 15%;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.done-button:hover{
+    background-color: rgb(82, 216, 82);
+}
+
+.delete-button:hover{
+    background-color: rgb(233, 74, 74);
+}
+
+.completed{
+    padding: 20px 50px;
+    color: rgb(56, 54, 54);
+}
+
+.completed p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc; 
+}
+
+.every-completed-task{
+    width: 85%;
+    display: flex;
+    align-items: center; /* Center vertically */
+    font-size: 20px;
+}
+
+.done-button:disabled,
+.done-button[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

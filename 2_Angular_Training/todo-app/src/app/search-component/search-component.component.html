@@ -1,0 +1,24 @@
+<div class="search-container">
+    <input type="text" name="" class="text-box" placeholder="Enter text" [(ngModel)]="newTask">
+    <button class="add-button" (click)="updateTask(newTask)"><b>+</b> Add</button>
+</div>
+<div *ngFor="let task of tasks">
+    <div class="task-container">
+        <div class="every-task">
+            <p>{{task.task}}</p>
+        </div>
+        <button class="done-button" (click)="updateCompletedTasks(task.id)" [disabled]="updateTaskCompletion(task.id)">Done</button>
+        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
+    </div>
+</div>
+<div *ngIf="completedTasks.length !== 0">
+    <div class="completed"><p>Completed Tasks</p></div>
+    <div *ngFor="let task of completedTasks">
+        <div class="task-container">
+            <div class="every-completed-task">
+                <p>{{task.task}}</p>
+            </div>
+            <button class="delete-button" (click)="deleteCompletedTask(task.id)">Delete</button>
+        </div>
+    </div>
+</div>
