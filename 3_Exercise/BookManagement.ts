@@ -17,10 +17,8 @@ export class BookManagement{
     }
     
     public validateUserCredentials(userId:String):Boolean{
-        console.log("Comes here");
         if(BookManagement.allUsers.has(userId.toLocaleLowerCase()))
         {
-            console.log("Enteres here");
             return true;
         }
         else{
