@@ -6,12 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './search-component.component.css'
 })
 export class SearchComponentComponent {
-  tasks: { id: number, task: string , completed: boolean}[] = [];
-  completedTasks: {id: number, task: string, completed: boolean}[] = [];
-  newTask: string = '';
-  id=0;
+  public tasks: { id: number, task: string , completed: boolean}[] = [];
+  public completedTasks: {id: number, task: string, completed: boolean}[] = [];
+  public newTask: string = '';
+  public id=0;
 
-  updateTask(newTask:string){
+  public updateTask(newTask:string):void{
     if(this.newTask.trim()!== ''){
       this.id++;
       this.tasks.push({id: this.id, task: newTask, completed: false});
@@ -20,7 +20,7 @@ export class SearchComponentComponent {
     }
   }
 
-  updateCompletedTasks(id:number){
+  public updateCompletedTasks(id:number):void{
     for(let i of this.tasks){
       if(i.id == id){
         i.completed = true;
@@ -30,7 +30,7 @@ export class SearchComponentComponent {
     }
   }
 
-  updateTaskCompletion(id:number):boolean{
+  public updateTaskCompletion(id:number):boolean{
     let taskIndex = this.tasks.findIndex(task => id == task.id);
 
     if(taskIndex!=-1){
@@ -39,11 +39,12 @@ export class SearchComponentComponent {
     return false;
   }
 
-  deleteTask(id:number){
+  public deleteTask(id:number):void{
     this.tasks = this.tasks.filter(task => task.id !== id);
   }
 
-  deleteCompletedTask(id:number){
+  public deleteCompletedTask(id:number):void{
     this.completedTasks = this.completedTasks.filter(task => task.id !== id);
+    this.tasks = this.tasks.filter(task => task.id !== id);
   }
 }
