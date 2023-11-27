@@ -24,7 +24,7 @@ export class CoursesComponent {
       name: "React Fundamentals",
       author: "Emily Johnson",
       duration: 15.0,
-      type: "Paid",
+      type: "Premium",
       price: 29.99,
       ratings: 4.5,
       image: 'assets/courses/course-img-2.png',
@@ -35,7 +35,7 @@ export class CoursesComponent {
       name: "Java Programming Mastery",
       author: "John Davis",
       duration: 25.0,
-      type: "Paid",
+      type: "Premium",
       price: 49.99,
       ratings: 4.7,
       image: 'assets/courses/course-img-3.webp',
@@ -46,7 +46,7 @@ export class CoursesComponent {
       name: "Django Web Development",
       author: "Sophia Miller",
       duration: 22.5,
-      type: "Paid",
+      type: "Premium",
       price: 39.99,
       ratings: 4.6,
       image: 'assets/courses/course-img-4.jpg',
@@ -57,7 +57,7 @@ export class CoursesComponent {
       name: "Flask for Beginners",
       author: "Alex Turner",
       duration: 18.0,
-      type: "Free",
+      type: "Premium",
       price: 0.00,
       ratings: 4.5,
       image: 'assets/courses/course-img-5.png',
@@ -68,7 +68,7 @@ export class CoursesComponent {
       name: "ExpressJS Masterclass",
       author: "Daniel White",
       duration: 20.0,
-      type: "Paid",
+      type: "Free",
       price: 34.99,
       ratings: 4.8,
       image: 'assets/courses/course-img-6.jpg',
@@ -90,7 +90,7 @@ export class CoursesComponent {
       name: "Python for Data Science",
       author: "Michael Robinson",
       duration: 30.0,
-      type: "Paid",
+      type: "Premium",
       price: 59.99,
       ratings: 4.9,
       image: 'assets/courses/course-img-8.png',
@@ -98,10 +98,10 @@ export class CoursesComponent {
     },
     {
       id: 109,
-      name: "React Native Mobile App Development",
+      name: "React Native for Beginners",
       author: "Jessica Carter",
       duration: 24.0,
-      type: "Paid",
+      type: "Premium",
       price: 44.99,
       ratings: 4.6,
       image: 'assets/courses/course-img-9.png',
@@ -109,14 +109,34 @@ export class CoursesComponent {
     },
     {
       id: 110,
-      name: "Advanced Python Programming",
+      name: "Advanced Python",
       author: "David Anderson",
       duration: 28.0,
-      type: "Paid",
+      type: "Free",
       price: 54.99,
       ratings: 4.8,
       image: 'assets/courses/course-img-10.webp',
       description: 'Take your Python skills to the next level with advanced programming techniques, design patterns, and real-world projects.'
     }
   ];
+
+  getTotalCourses(){
+    return this.courses.length;
+  }
+
+  getTotalFreeCourses(){
+    return this.courses.filter(course => course.type=="Free").length;
+  }
+
+  getTotalPremiumCourses(){
+    return this.courses.filter(course => course.type=="Premium").length;
+  }
+
+  courseCountRadioButton: string = 'All';
+
+  onFilterRadioButtonChanged(data:string){
+    this.courseCountRadioButton = data;
+    // console.log("Parent")
+    // console.log(this.courseCountRadioButton);
+  }
 }

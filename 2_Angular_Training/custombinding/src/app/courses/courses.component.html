@@ -1,17 +1,30 @@
-<div class="course-container" *ngFor="let course of courses">
-    <div class="course-card">
-        <div>
-            <img [src]="course.image" style="max-width:200px; max-height:140px;">
-        </div>
-        <div class="course-name"><h4>{{ course.name }}</h4></div>
-        <div class="course-description"><p>{{course.description.slice(0, 80)}}...</p></div>
-        <div class="details">
-            <div class="course-type" [ngStyle]="{clor: course.type === 'Free' ? 'Green' : 'Red'}">{{course.type}}</div>
-            <div class="course-price"><b>Price:</b>${{course.price}}</div>
-        </div>
-        <div class="course-button">
-            <button class="btn btn-buy">Buy Now</button>
-            <button class="btn btn-show" style="margin-left: 10px;">Show Details</button>
+<div>
+    <app-search></app-search>
+    <app-filter 
+    [total]="getTotalCourses()" 
+    [free]="getTotalFreeCourses()"
+    [premium]="getTotalPremiumCourses()"
+    (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)">
+    </app-filter>
+</div>
+
+<ng-container *ngFor="let course of courses">
+    <div class="course-container" *ngIf="courseCountRadioButton === 'All' || courseCountRadioButton === course.type">
+        <div class="course-card">
+            <div>
+                <img [src]="course.image" style="max-width:200px; max-height:140px;">
+            </div>
+            <div class="course-name"><h4>{{ course.name }}</h4></div>
+            <div class="course-description"><p>{{course.description.slice(0, 80)}}...</p></div>
+            <div class="details">
+                <div class="course-type" [ngStyle]="{color: course.type === 'Free' ? 'Green' : 'Red'}">{{course.type}}</div>
+                <div class="course-price"><b>Price:</b>${{course.price}}</div>
+            </div>
+            <div class="course-buttons">
+                <button class="btn btn-buy">Buy Now</button>
+                <button class="btn btn-show">Show Details</button>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>
+
