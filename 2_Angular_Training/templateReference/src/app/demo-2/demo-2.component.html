@@ -1,0 +1,48 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Group Name</th>
+            <th>Company</th>
+            <th>Age</th>
+            <th>Debut Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let idol of idols">
+            <td>{{ idol.name }}</td>
+            <td>{{ idol.groupName }}</td>
+            <td>{{ idol.company }}</td>
+            <td>{{ idol.age }}</td>
+            <td>{{ idol.debutYear }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<span>Enter Group Name</span>
+<input type="text" #groupName (keyup)="0">
+<button (click)="setFilteredGroup(groupName)">Enter</button>
+<div *ngIf="filteredGroup.length>0">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Group Name</th>
+                <th>Company</th>
+                <th>Age</th>
+                <th>Debut Year</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let idol of filteredGroup">
+                <td>{{ idol.name }}</td>
+                <td>{{ idol.groupName }}</td>
+                <td>{{ idol.company }}</td>
+                <td>{{ idol.age }}</td>
+                <td>{{ idol.debutYear }}</td>
+                <button (click)="selectedIdol = idol">Select</button>
+            </tr>
+        </tbody>
+    </table>
+</div>

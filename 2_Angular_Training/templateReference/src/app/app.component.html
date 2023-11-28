@@ -1,0 +1,9 @@
+<!-- <app-demo></app-demo> -->
+
+<!-- <app-customer-list #customer></app-customer-list>
+<p>You have selected {{ customer.selectedCustomer?.name }}</p> -->
+
+<app-demo-2 #idol></app-demo-2>
+<div *ngIf="idol.selectedIdol != null">
+    <p>You like <b>{{ idol.selectedIdol?.name}}</b> from <b>{{ idol.selectedIdol?.groupName}}</b></p>
+</div>
