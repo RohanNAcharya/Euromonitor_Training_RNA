@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="movies" *ngFor="let movie of movies">
+        <div class="poster-name">
+            <div class="poster">
+                <img [src]="movie.image" style="max-width:200px; max-height:200px;">
+            </div>
+            <div class="name">{{movie.name}}</div>
+            <div class="language">{{movie.language}}</div>
+        </div>
+        <div class="vote">
+            <button>Vote</button>
+        </div>
+    </div>
+</div>

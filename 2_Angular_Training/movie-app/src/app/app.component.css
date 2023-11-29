@@ -1,0 +1,11 @@
+.wrapper{
+    height: 100vh;
+}
+
+.header{
+    padding: 20px 20px;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    color:azure;
+    font-size: 20px;
+}
