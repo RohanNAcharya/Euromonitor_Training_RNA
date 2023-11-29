@@ -2,7 +2,8 @@ import { Pipe, PipeTransform} from "@angular/core"
 import { Student } from "../Models/Student";
 
 @Pipe({
-    name: 'filter'
+    name: 'filter',
+    pure: false
 })
 export class FilterPipe implements PipeTransform{
     transform(list: Student[], filterBy: string) {

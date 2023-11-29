@@ -16,5 +16,19 @@ export class StudentService{
         let id = this.students.length + 1;
         let student = new Student(id, name, gender, dob, course, marks, fee);
         this.students.push(student);
+
+        // let studentCopy = [...this.students];
+        // studentCopy.push(student);
+        // this.students = studentCopy;
+    }
+
+    filterStudentByGender(filterBy: string){
+        if(filterBy.toLowerCase() === 'all' || filterBy === '' || this.students.length === 0){
+            return this.students;
+        }else{
+            return this.students.filter((std) => {
+                return std.gender.toLowerCase() === filterBy.toLowerCase() 
+            })
+        }
     }
 }
