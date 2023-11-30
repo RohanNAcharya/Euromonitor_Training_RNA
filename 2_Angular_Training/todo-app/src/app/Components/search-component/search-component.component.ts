@@ -6,17 +6,17 @@ import { Component } from '@angular/core';
   styleUrl: './search-component.component.css'
 })
 export class SearchComponentComponent {
-  public tasks: { id: number, task: string , completed: boolean}[] = [];
-  public completedTasks: {id: number, task: string, completed: boolean}[] = [];
-  public newTask: string = '';
+  public tasks: { id: number, task: string|undefined, completed: boolean}[] = [];
+  public completedTasks: {id: number, task: string|undefined, completed: boolean}[] = [];
+  public newTask: string | undefined = undefined;
   public id=0;
 
-  public updateTask(newTask:string):void{
-    if(this.newTask.trim()!== ''){
+  public updateTask(newTask:string|undefined):void{
+    if(this.newTask!.trim()!== '' && isNaN(Number(this.newTask))){
       this.id++;
       this.tasks.push({id: this.id, task: newTask, completed: false});
       console.log(this.tasks);
-      this.newTask = '';
+      this.newTask = undefined;
     }
   }
 
