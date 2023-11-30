@@ -6,33 +6,74 @@
 
 .movies{
     display: flex;
+    width: 100%;
+    margin: 20px;
 }
 
 .poster-name{
     width: 60%;
-    height: 300px;
-    padding: 50px 70px;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .poster{
-    margin-left: 30%;
+    width: 30%;
+    height: 100%;
+    padding: 20px;
+    padding-left: 33%;
+}
+
+.language,
+.name{
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
 }
 
 .name{
-    margin-left: 25px;
-    margin-top: 15px;
     background-color: lightblue;
-    text-align: center;
 }
 
 .language{
-    margin-left: 25px;
-    margin-top: 10px;
     background-color: lightcoral;
-    text-align: center;
 }
 
 .vote{
-    margin-top: 15%;
-    margin-left: 30%;
+    margin-top: 10%;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
 }
+
+.vote button{
+    border:none;
+    height: 60px;
+    padding: 20px 30px;
+    background-color: rgb(150, 104, 45);
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.vote button:hover{
+    background-color: rgb(206, 163, 106);
+}
+
+.vote p{
+  color: green;
+  background-color: rgb(191, 233, 149);
+  padding: 20px 40px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* .vote button:disabled,
+.vote button[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+} */
