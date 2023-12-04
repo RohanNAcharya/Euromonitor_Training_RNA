@@ -1,0 +1,21 @@
+<div class="filter">
+    <app-filter
+    [all]="getAll()"
+    [male]="getMale()"
+    [female]="getFemale()"
+    (radioButtonChange)="onRadioButtonSelectionChange($event)"></app-filter>
+</div>
+<div class="container">
+    <ng-container *ngFor="let group of groups">
+        <div class="band-card" *ngIf="groupsCountRadioButton == 'All' || groupsCountRadioButton.toLowerCase() == group.gender">
+            <div class="image-card">
+                <img [src]="group.image">
+            </div>
+            <div class="band-name">{{ group.name }}</div>
+            <div class="country-debut">
+                <div class="country">{{ group.country }}</div>
+                <div class="debut-year">{{ group.debutYear }}</div>
+            </div>
+        </div>
+    </ng-container>
+</div>

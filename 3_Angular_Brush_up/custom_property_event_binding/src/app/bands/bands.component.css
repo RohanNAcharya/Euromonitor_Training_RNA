@@ -1,0 +1,55 @@
+.container{
+    background-color: aliceblue;
+    height:100vh;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+    /* align-content: space-around; */
+    /*margin-top: 0px; */
+}
+
+.band-card{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.image-card{
+    height: 70%;
+}
+
+img{
+    padding: 10px;
+    max-width: 180px;
+    max-height: 200px;
+}
+
+.band-name{
+    width: 100%;
+    background-color: lightcoral;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.country-debut{
+    display: flex;
+    width: 100%;
+}
+
+.country{
+    background-color: lightseagreen;
+    width: 60%;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.debut-year{
+    background-color: lightblue;
+    width: 40%;
+    text-align: center;
+    padding: 10px 10px;
+}
+

@@ -1,0 +1,10 @@
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-container input,
+.filter-container span {
+    margin-right: 10px; /* Adjust as needed for spacing between radio buttons and text */
+}
