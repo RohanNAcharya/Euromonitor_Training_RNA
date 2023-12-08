@@ -11,12 +11,13 @@ export class BetterhighlightDirective implements OnInit {
 
   @Input() defaultColor: string = 'transparent';
   @Input('appBetterhighlight') highlightColor:string = 'pink';
+  title:string = 'Title';
 
   @HostBinding('style.backgroundColor') background: string = this.defaultColor;
   @HostBinding('style.border') border: string = 'none';
 
   ngOnInit(){
-    this.background = this.defaultColor;
+    this.background = 'yellow';
   }
 
   @HostListener('mouseenter') mouseenter(){

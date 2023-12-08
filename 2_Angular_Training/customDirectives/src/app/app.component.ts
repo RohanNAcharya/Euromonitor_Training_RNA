@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'customDirectives';
+
+  active:boolean = Math.floor(Math.random()*10) > 5 ? true : false;
+
+  display: boolean = false;
+
+  occupation: string = "teacher";
+
+  DisplayNotice(){
+    this.display = true;
+  }
 }

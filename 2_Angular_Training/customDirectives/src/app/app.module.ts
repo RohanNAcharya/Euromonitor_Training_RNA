@@ -5,14 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { setBackgroundColorDiective } from './CustomDirectives/setBackground.directive';
 import { HoverDirective } from './CustomDirectives/hover.directive';
-import { BetterhighlightDirective } from './CustomDirectives/betterhighlight.directive'
+import { BetterhighlightDirective } from './CustomDirectives/betterhighlight.directive';
+import { HighlightDirective } from './CustomDirectives/highlight.directive';
+import { ClassDirective } from './CustomDirectives/class.directive';
+import { StyleDirective } from './CustomDirectives/style.directive';
+import { IfDirective } from './CustomDirectives/if.directive'
 
 @NgModule({
   declarations: [
     AppComponent,
     setBackgroundColorDiective,
     HoverDirective,
-    BetterhighlightDirective
+    BetterhighlightDirective,
+    HighlightDirective,
+    ClassDirective,
+    StyleDirective,
+    IfDirective
   ],
   imports: [
     BrowserModule,
