@@ -1,0 +1,41 @@
+.navbar {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.left-header h1 {
+    margin: 0;
+}
+
+.children a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.children a:hover {
+    background-color: #333333;
+}
+
+.back{
+    margin-top: 15px;
+}
+
+.back a {
+    margin-left: 10px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.back a:hover {
+    background-color: #333333;
+    cursor: pointer;
+}

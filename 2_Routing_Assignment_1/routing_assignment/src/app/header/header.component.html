@@ -1,0 +1,14 @@
+<div class="navbar">
+    <div class="left-header">
+        <h1>Euromonitor</h1>
+    </div>
+    <div class="children">
+        <a routerLink="Home" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Home</a>
+        <a routerLink="Research_Development" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Research Development</a>
+        <a routerLink="Business" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Business</a>
+        <a routerLink="Technology" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Techology</a>    
+    </div>
+</div>
+<div class="back">
+    <a (click)="goBack()">Go Back</a>
+</div>
