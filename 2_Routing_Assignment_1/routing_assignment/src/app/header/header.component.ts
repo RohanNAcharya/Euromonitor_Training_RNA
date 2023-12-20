@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  router: Router = inject(Router);
+  constructor(private location:Location){}
 
   goBack(){
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
 }
