@@ -28,48 +28,45 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Home', component: HomeComponent },
-  { path: 'Research_Development', component: ResearchDevelopmentComponent },
-  { path: 'Business', component: BusninessComponent },
-  { path: 'Technology', component: TechnologyComponent },
-
+  
   { path: 'Research_Development', children: [
+    { path: '', component: ResearchDevelopmentComponent },
     { path: 'Catalyst', component: CatalystComponent },
     { path: 'One_Research', component: OneResearchComponent }
   ]},
 
   { path: 'Business', children: [
+    { path: '', component: BusninessComponent },
     { path: 'Marketing', component: MarketingComponent },
     { path: 'Sales', component: SalesComponent },
     { path: 'Accounts', component: AccountsComponent }
   ]},
 
   { path: 'Technology', children: [
-    { path: 'Soft_Engineering', component: SoftEngineeringComponent },
+    { path: '', component: TechnologyComponent },
+    { path: 'Soft_Engineering', children: [
+      { path: '', component: SoftEngineeringComponent },
+      { path: 'Data_Transformation', children: [
+        { path: '', component: DataTransformationComponent },
+        { path: 'DT-1', component: DT1Component },
+        { path: 'DT-2', component: DT2Component },
+        { path: 'DT-3', component: DT3Component }
+      ]},
+      { path: 'Passport', children: [
+        { path: '', component: PassportComponent },
+        { path: 'PP1', component: PP1Component },
+        { path: 'PP2', component: PP2Component },
+        { path: 'PP3', component: PP3Component },
+        { path: 'PP4', component: PP4Component }
+      ]},
+      { path: 'ISSAC', component: IssacComponent },
+      { path: 'Ecom', component: EComComponent },
+    ]},
     { path: 'Publication', component: PublicationComponent },
     { path: 'Cloud_Engineering', component: CloudEngineeringComponent },
   ]},
 
-  { path: 'Technology/Soft_Engineering', children: [
-    { path: 'Data_Transformation', component: DataTransformationComponent },
-    { path: 'Passport', component: PassportComponent },
-    { path: 'ISSAC', component: IssacComponent },
-    { path: 'Ecom', component: EComComponent },
-  ]},
-
-  { path: 'Technology/Soft_Engineering/Data_Transformation', children: [
-    { path: 'DT-1', component: DT1Component },
-    { path: 'DT-2', component: DT2Component },
-    { path: 'DT-3', component: DT3Component }
-  ]},
-
-  { path: 'Technology/Soft_Engineering/Passport', children: [
-    { path: 'PP1', component: PP1Component },
-    { path: 'PP2', component: PP2Component },
-    { path: 'PP3', component: PP3Component },
-    { path: 'PP4', component: PP4Component }
-  ]},
-
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
