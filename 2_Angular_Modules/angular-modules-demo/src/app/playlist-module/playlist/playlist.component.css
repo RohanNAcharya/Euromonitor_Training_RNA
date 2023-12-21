@@ -1,0 +1,52 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .song {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .index {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .name {
+    flex-grow: 1;
+    font-weight: bold;
+  }
+  
+  .artist {
+    margin-right: 10px;
+  }
+  
+  .btn {
+    margin-left: auto;
+  }
+  
+  .btn button {
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn button:hover {
+    background-color: #333; /* Slightly lighter color on hover */
+  }
+  
