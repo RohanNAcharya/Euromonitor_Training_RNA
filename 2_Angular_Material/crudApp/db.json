@@ -1,0 +1,105 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "firstName": "Jennie",
+      "lastName": "Kim",
+      "email": "jennieruby@gmail.com",
+      "dob": "2023-12-20T18:30:00.000Z",
+      "gender": "female",
+      "education": "Post Graduate",
+      "company": "YG",
+      "experience": 7,
+      "package": 190,
+      "id": 1
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "dob": "1990-01-15T12:00:00.000Z",
+      "gender": "male",
+      "education": "Graduate",
+      "company": "XYZ Corp",
+      "experience": 5,
+      "package": 120,
+      "id": 2
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "dob": "1992-05-22T10:30:00.000Z",
+      "gender": "female",
+      "education": "Master's Degree",
+      "company": "ABC Ltd",
+      "experience": 8,
+      "package": 10,
+      "id": 3
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "email": "bob.johnson@example.com",
+      "dob": "1988-08-12T14:45:00.000Z",
+      "gender": "male",
+      "education": "High School",
+      "company": "Tech Innovators",
+      "experience": 4,
+      "package": 100,
+      "id": 4
+    },
+    {
+      "firstName": "Rose",
+      "lastName": "Parl",
+      "email": "rp@yg.com",
+      "dob": "2023-12-04T18:30:00.000Z",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "saf",
+      "experience": 34,
+      "package": 200,
+      "id": 6
+    },
+    {
+      "firstName": "Jisoo",
+      "lastName": "Kim",
+      "email": "jisoo@yg.com",
+      "dob": "2023-12-03T18:30:00.000Z",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "YG",
+      "experience": 7,
+      "package": 123,
+      "id": 7
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "dob": "",
+      "gender": "",
+      "education": "",
+      "company": "",
+      "experience": "",
+      "package": "",
+      "id": 8
+    }
+  ]
+}
