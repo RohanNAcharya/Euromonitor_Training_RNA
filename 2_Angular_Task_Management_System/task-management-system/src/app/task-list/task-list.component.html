@@ -1,0 +1,45 @@
+<mat-toolbar [ngStyle]="{'background-color': '#512DA8'}">
+    <span style="color: white; font-size: 30px; margin-left: 20px;">Task<i style="color: #FF4081;">Nest</i></span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button class="toolbar-button" 
+        [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="openAddEditEmpForm()">
+        Add New
+    </button>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="navigateToCompleted()">
+      Completed
+    </button>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="logout()">
+        Logout
+    </button>
+</mat-toolbar>
+
+<div class="main-body">
+    <div class="filter">
+        <mat-form-field appearance="outline">  
+        <mat-label>Filter By:</mat-label>
+        <select matNativeControl required>
+            <option value="all">All</option>
+            <option value="category">Category</option>
+            <option value="due-date">Due Date</option>
+            </select>
+        </mat-form-field>
+    </div>
+
+    <div class="task-container">
+        <mat-card *ngFor="let task of allTasks">
+            <mat-card-content class="mat-card-container">
+                <div class="category"><div class="chip" [ngStyle]="{'background-color': categoryColorMap[task.category]}">{{ task.category }}</div></div>
+                <div class="task-title"><span><h2>{{ task.title }}</h2></span></div>
+                <div class="due-date"><span>{{ task.duedate | date: 'dd/MM/yyyy' }}</span></div>
+                <div class="done-button" (click)="updateTaskCompleted(userData, task.id!)">
+                    <mat-chip color="primary" [ngStyle]="{'background-color': task.completed ? 'green' : 'transparent', 'color': task.completed ? 'white' : 'black'}">
+                        {{task.completed? 'Done': 'Pending' }}
+                    </mat-chip>
+                </div>
+                <div class="edit-button"><button mat-icon-button color="primary" (click)="openEditForm(userData, task)"><mat-icon>edit</mat-icon></button></div>
+                <div class="delete-button"><button mat-icon-button color="warn" (click)="deleteTask(userData, task.id!)"><mat-icon>delete</mat-icon></button></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

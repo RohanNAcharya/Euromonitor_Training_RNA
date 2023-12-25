@@ -1,0 +1,26 @@
+<mat-toolbar [ngStyle]="{'background-color': '#512DA8'}">
+    <span style="color: white; font-size: 30px; margin-left: 20px;">Task<i style="color: #FF4081;">Nest</i></span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="navigateBackToTaskList()">
+      Back To Home
+    </button>
+</mat-toolbar>
+
+<div class="main-body">
+    <div mat-dialog-title>
+        <h1 class="heading">Completed Tasks</h1>
+    </div>
+
+    <div class="task-container">
+        <mat-card>
+            <mat-card-content class="mat-card-container">
+                <div class="category"><mat-chip color="primary">Category1</mat-chip></div>
+                <div class="task-title"><span><h2>Task Title: Your Task Title</h2></span></div>
+                <div class="due-date"><span>Due Date: 2023-12-31</span></div>
+                <div class="done-button"><mat-chip color="primary" [disabled]="true" [ngStyle]="{'background-color': 'green'}">Done</mat-chip></div>
+                <div class="delete-button"><button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

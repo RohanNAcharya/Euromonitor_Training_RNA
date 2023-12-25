@@ -1,0 +1,39 @@
+<div mat-dialog-title>
+    <h1>Add New Task</h1>
+</div>
+
+<form [formGroup]="taskForm" (ngSubmit)="onTaskSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Task Title</mat-label>
+                <input matInput type="text" placeholder="Go to gym..." formControlName="title">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Task Category</mat-label>
+                <mat-select placeholder="Select" formControlName="category">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                      {{ category }}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+            
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="duedate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" type="submit">{{ dialogData.task ? 'Update' : 'Add' }}</button>
+    </div>
+</form>

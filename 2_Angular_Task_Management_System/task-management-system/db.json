@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "username": "rohan",
+      "password": "1234",
+      "id": 1,
+      "tasks": [
+        {
+          "title": "Go to shopping",
+          "category": "Work",
+          "duedate": "2023-12-29T18:30:00.000Z",
+          "completed": true,
+          "id": 1
+        },
+        {
+          "title": "Go to Gym",
+          "category": "Shopping",
+          "duedate": "2023-12-29T18:30:00.000Z",
+          "completed": true,
+          "id": 2
+        },
+        {
+          "title": "Write Homework",
+          "category": "Study",
+          "duedate": "2023-12-27T18:30:00.000Z",
+          "completed": true,
+          "id": 3
+        },
+        {
+          "title": "Sleep",
+          "category": "Other",
+          "duedate": "2023-12-27T18:30:00.000Z",
+          "completed": true,
+          "id": 4
+        }
+      ]
+    },
+    {
+      "username": "Jennie",
+      "password": "1234",
+      "tasks": null,
+      "id": 2
+    },
+    {
+      "username": "Mina",
+      "password": "2345",
+      "tasks": null,
+      "id": 3
+    },
+    {
+      "username": "Rose",
+      "password": "1234",
+      "tasks": null,
+      "id": 4
+    }
+  ]
+}
