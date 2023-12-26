@@ -25,7 +25,6 @@ export class TaskService {
       switchMap(user => {
         user.tasks = user.tasks || [];
         task.id = user.tasks.length + 1;
-        console.log(task);
         user.tasks.push(task);
         return this.http.put<User>(userTasksUrl, user);
       })
@@ -40,6 +39,7 @@ export class TaskService {
   updateTask(userData:User, oldTask:task, updatedTask:task): Observable<User>{
     const userTasksUrl = `${this.apiUrl}/${userData.id}`;
     const indexToUpdate = userData.tasks.findIndex((task) => task.id === oldTask.id);
+    console.log(indexToUpdate);
     if(indexToUpdate !== -1){
       userData.tasks[indexToUpdate].category = updatedTask.category;
       userData.tasks[indexToUpdate].title = updatedTask.title;

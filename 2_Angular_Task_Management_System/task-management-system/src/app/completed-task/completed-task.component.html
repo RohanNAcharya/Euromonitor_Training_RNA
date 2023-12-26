@@ -12,15 +12,26 @@
     </div>
 
     <div class="task-container">
-        <mat-card>
+        <ng-container *ngIf="comletedTasks.length; else noTasks">
+        <mat-card *ngFor="let task of comletedTasks">
             <mat-card-content class="mat-card-container">
-                <div class="category"><mat-chip color="primary">Category1</mat-chip></div>
-                <div class="task-title"><span><h2>Task Title: Your Task Title</h2></span></div>
-                <div class="due-date"><span>Due Date: 2023-12-31</span></div>
+                <div class="category"><div class="chip" [ngStyle]="{'background-color': categoryColorMap[task.category]}">{{ task.category }}</div></div>
+                <div class="task-title"><span><h2>{{ task.title }}</h2></span></div>
+                <div class="due-date"><span>{{ task.duedate | date : 'MMMM' }}</span></div>
                 <div class="done-button"><mat-chip color="primary" [disabled]="true" [ngStyle]="{'background-color': 'green'}">Done</mat-chip></div>
-                <div class="delete-button"><button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button></div>
+                <div class="delete-button"><button mat-icon-button color="warn" (click)="deleteTask(task.id!)"><mat-icon>delete</mat-icon></button></div>
             </mat-card-content>
         </mat-card>
+    </ng-container>
+    <ng-template #noTasks>
+        <mat-card>
+            <mat-card-content class="mat-card-container" [ngStyle]="{'color': 'red'}">
+                <div class="no-tasks" style="width:100%; text-align: center">
+                    <h2>No tasks found</h2>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
     </div>
 </div>
 

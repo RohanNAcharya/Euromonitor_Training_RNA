@@ -12,7 +12,9 @@ import { AddEditTaskFormComponent } from './add-edit-task-form/add-edit-task-for
 import { CompletedTaskComponent } from './completed-task/completed-task.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CategoryStyleDirective } from './Directives/category-style.directive';
+import { FormsModule } from '@angular/forms';
+import { DueDatePipe } from './Pipes/due-date.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { CategoryStyleDirective } from './Directives/category-style.directive';
     TaskListComponent,
     AddEditTaskFormComponent,
     CompletedTaskComponent,
-    CategoryStyleDirective
+    DueDatePipe
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,9 @@ import { CategoryStyleDirective } from './Directives/category-style.directive';
     BrowserAnimationsModule,
     MaterialImportsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    DatePipe
   ],
   providers: [
     provideClientHydration()

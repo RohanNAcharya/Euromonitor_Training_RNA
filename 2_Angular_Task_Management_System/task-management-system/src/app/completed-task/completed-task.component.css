@@ -49,6 +49,16 @@ mat-card{
   flex-basis: 10%;
 }
 
+.chip {
+  display: inline-block;
+  padding: 8px 12px; 
+  color: #fff; 
+  border-radius: 16px; 
+  margin: 4px; 
+  width: 85px;
+  text-align: center; 
+}
+
 .task-title {
   flex-basis: 50%;
   margin-left: 10px; 

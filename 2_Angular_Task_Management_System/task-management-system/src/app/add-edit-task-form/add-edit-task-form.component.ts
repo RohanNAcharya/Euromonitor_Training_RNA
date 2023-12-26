@@ -12,48 +12,50 @@ import { User } from '../Services/auth.service';
 })
 export class AddEditTaskFormComponent {
   taskForm!: FormGroup;
-  categories: string[] = ["General", "Work", "Shopping", "Study", "Hobby", "Family", "Friends", "Party", "Other"];
+  categories: string[] = [
+    "General", "Event", "Family/Home", "Finance", "Friends", "Health", "Hobby", "Learning", "Party", "Self-Care", "Shopping", "Study", "Travel", "Volunteer", "Work", "Workout", "Other"
+  ];
   taskService: TaskService = inject(TaskService);
- 
+
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEditTaskFormComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: { id: number },
     @Inject(MAT_DIALOG_DATA) public dialogData: { userData: User, task: task }
-  ){
+  ) {
     this.taskForm = this.fb.group({
       title: this.dialogData.task ? this.dialogData.task.title : '',
       category: this.dialogData.task ? this.dialogData.task.category : '',
       duedate: this.dialogData.task ? this.dialogData.task.duedate : '',
-      completed: false
+      completed: this.dialogData.task ? this.dialogData.task.completed : ''
     });
   }
 
-  onTaskSubmit(){
-    if(this.taskForm.valid){
-      if(this.dialogData.task){
+  onTaskSubmit() {
+    if (this.taskForm.valid) {
+      if (this.dialogData.task) {
         this.taskService.updateTask(this.dialogData.userData, this.dialogData.task, this.taskForm.value).subscribe({
           next: (data) => {
             alert('Task updated Sucessfully!');
             this.dialogRef.close(true);
           },
-          error: (err: any) =>{
+          error: (err: any) => {
             console.log(err);
           }
         })
       }
-      else{
+      else {
         this.taskService.addTask(this.userData.id, this.taskForm.value).subscribe({
           next: (data) => {
             alert('Task added Sucessfully!');
             this.dialogRef.close(true);
           },
-          error: (err: any) =>{
+          error: (err: any) => {
             console.log(err);
           }
         })
       }
-      }  
+    }
   }
 }

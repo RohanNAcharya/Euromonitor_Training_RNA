@@ -12,6 +12,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -30,7 +32,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatNativeDateModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCheckboxModule,
+    MatRadioModule
   ]
 })
 export class MaterialImportsModule { }

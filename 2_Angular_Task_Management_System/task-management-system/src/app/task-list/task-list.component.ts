@@ -11,7 +11,7 @@ import { subscribe } from 'diagnostics_channel';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
   username!: string;
@@ -19,24 +19,35 @@ export class TaskListComponent implements OnInit{
   allTasks!: task[];
   userData!: User;
   authService: AuthService = inject(AuthService);
+  filteredTasks: task[] = [];
+  selectedFilter: string = 'all';
+  labelPosition: string = 'date-added'
   categoryColorMap: { [key: string]: string } = {
-    "General": "#80bfff",
-    "Work": "#8080ff",
-    "Shopping": "#ff80ff",
-    "Study": "#ff8080",
-    "Hobby": "#d5ff80",
-    "Family": "#ffff80",
-    "Friends": "#df80ff",
-    "Party": "#ffd480",
-    "Other": "#b3cccc"
+    "General": "#1A5276",
+    "Event": "#D4AC0D",
+    "Family/Home": "#9A7D0A",
+    "Finance": "#943126",
+    "Friends": "#6F257F",
+    "Health": "#B03A2E",
+    "Hobby": "#4E754E",
+    "Learning": "#641E16",
+    "Party": "#A04000",
+    "Self-Care": "#D98880",
+    "Shopping": "#17202A",
+    "Study": "#7B241C",
+    "Travel": "#283747",
+    "Volunteer": "#4A235A",
+    "Work": "#1F618D",
+    "Workout": "#212F3C",
+    "Other": "#424949",
   };
 
   constructor(
     private dialog: MatDialog,
     private taskService: TaskService
-  ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.activeRoute.queryParams.subscribe(params => {
       this.username = params['username']!;
       this.id = params['id']!;
@@ -44,40 +55,49 @@ export class TaskListComponent implements OnInit{
     });
   }
 
-  openAddEditEmpForm(){
-    const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: {id: Number(this.id) } });
+  openAddEditEmpForm() {
+    const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: { id: Number(this.id) } });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
-        if(val){
+        if (val) {
           this.getAllTasks();
         }
       }
     });
   }
 
-  getAllTasks():void{
+  getAllTasks(): void {
     this.taskService.getEmployeeList(this.id).subscribe({
       next: (data) => {
-        console.log(data.tasks);
         this.userData = data;
-        this.allTasks = data.tasks;
-        console.log(this.allTasks);
+        let categoryFilteredTasks = (this.selectedFilter === 'all') ?
+          data.tasks :
+          data.tasks.filter(task => task.category.toLowerCase() === this.selectedFilter);
+
+        this.filteredTasks = (this.labelPosition === 'date-added') ?
+          categoryFilteredTasks.sort((a, b) => Number(a.id) - Number(b.id)) :
+          categoryFilteredTasks.sort((a, b) => new Date(a.duedate).getTime() - new Date(b.duedate).getTime());
+        console.log(this.filteredTasks);
       }
     });
   }
 
-  openEditForm(userData:User, task:task):void{
-    const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: {task, userData} });
+  onFilterChange(): void {
+    this.getAllTasks();
+  }
+
+  openEditForm(userData: User, task: task): void {
+    const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: { task, userData } });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
-        if(val){
+        if (val) {
           this.getAllTasks();
         }
       }
     });
   }
 
-  deleteTask(user:User, taskId:number):void{
+  deleteTask(user: User, taskId: number): void {
     this.taskService.deleteTask(user.id!, taskId).subscribe({
       next: (res) => {
         alert("Task Deleted");
@@ -87,7 +107,7 @@ export class TaskListComponent implements OnInit{
     })
   }
 
-  updateTaskCompleted(user:User, taskId:number):void{
+  updateTaskCompleted(user: User, taskId: number): void {
     this.taskService.updateTaskCompleted(user.id!, taskId).subscribe({
       next: (res) => {
         alert("Task Status Updated");
@@ -97,13 +117,14 @@ export class TaskListComponent implements OnInit{
     })
   }
 
-  logout(){
+  logout() {
     this.authService.loggedIn = false;
     this.router.navigate(['/home']);
   }
 
-  navigateToCompleted(){
+  navigateToCompleted() {
     this.router.navigate(['/completed'], { queryParams: { username: this.username, id: this.id } });
   }
+
 }
 
