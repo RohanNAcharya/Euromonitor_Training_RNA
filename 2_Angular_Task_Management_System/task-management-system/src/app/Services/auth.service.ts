@@ -1,15 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, observable } from 'rxjs';
-import { task } from './task.service';
-
-
-export interface User{
-  id?: number,
-  username: string,
-  password: string,
-  tasks: task[]
-}
+import { Observable } from 'rxjs';
+import { Iuser } from '../Interfaces/Iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +12,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  validateLogin(username:string, password:string): Observable<User[]>{
+  validateLogin(username:string, password:string): Observable<Iuser[]>{
     const params = new HttpParams()
       .set('username', username)
       .set('password', password);
       
-    return this.http.get<User[]>(`${this.baseUrl}`, { params });
+    return this.http.get<Iuser[]>(`${this.baseUrl}`, { params });
   }
 
-  checkExistingUser(username:string): Observable<User[]>{
+  checkExistingUser(username:string): Observable<Iuser[]>{
     const params = new HttpParams()
       .set('username', username);
       
-    return this.http.get<User[]>(`${this.baseUrl}`, { params });
+    return this.http.get<Iuser[]>(`${this.baseUrl}`, { params });
   }
 
-  addNewUser(data: User): Observable<User>{
-    return this.http.post<User>(`${this.baseUrl}`, data);
+  addNewUser(data: Iuser): Observable<Iuser>{
+    return this.http.post<Iuser>(`${this.baseUrl}`, data);
   }
 
 }

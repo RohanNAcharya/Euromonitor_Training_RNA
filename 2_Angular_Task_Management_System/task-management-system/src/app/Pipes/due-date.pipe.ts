@@ -15,15 +15,15 @@ export class DueDatePipe implements PipeTransform {
     return this.returnData(Number(daysDifference), value);
   }
 
-  returnData(daysDifference:number, value:string):string{
+  returnData(daysDifference: number, value: string): string {
     const datePipe = new DatePipe('en-US');
-    if(daysDifference === 0){
+    if (daysDifference === 0) {
       return `<span><b>Due Today</b></span>`;
-    }else if(daysDifference>=1 && daysDifference <= 6){
+    } else if (daysDifference >= 1 && daysDifference <= 6) {
       return `<span><b>Due in ${daysDifference} days</b></span>`;
-    } else if (daysDifference >=7){
+    } else if (daysDifference >= 7) {
       return `<span><b>Due by ${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>`;
-    }else{
+    } else {
       return `<span><b>${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>`;
     }
   }

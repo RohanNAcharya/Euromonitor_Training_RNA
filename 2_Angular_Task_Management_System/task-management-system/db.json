@@ -26,7 +26,7 @@
           "title": "Go to shopping to Orion",
           "category": "Friends",
           "duedate": "2023-12-29T18:30:00.000Z",
-          "completed": false,
+          "completed": true,
           "id": 1
         },
         {
@@ -37,21 +37,21 @@
           "id": 3
         },
         {
-          "title": "BTS concert d",
+          "title": "BTS concert",
           "category": "Event",
           "duedate": "2024-01-09T18:30:00.000Z",
-          "completed": true,
+          "completed": false,
           "id": 4
         },
         {
-          "title": "Angular ",
-          "category": "Study",
+          "title": "Angular Project",
+          "category": "Party",
           "duedate": "2023-12-30T18:30:00.000Z",
           "completed": true,
           "id": 5
         },
         {
-          "title": "React Project",
+          "title": "React Project Demo",
           "category": "Study",
           "duedate": "2024-01-24T18:30:00.000Z",
           "completed": false,
@@ -65,11 +65,46 @@
           "id": 7
         },
         {
-          "title": "YG Strategy",
+          "title": "YG Strategy Study s",
           "category": "Study",
           "duedate": "2023-12-26T18:30:00.000Z",
           "completed": true,
           "id": 8
+        },
+        {
+          "title": "Twice Concert",
+          "category": "Event",
+          "duedate": "2024-01-30T18:30:00.000Z",
+          "completed": "",
+          "id": 8
+        },
+        {
+          "title": "Cousin Marriage",
+          "category": "Event",
+          "duedate": "2024-01-16T18:30:00.000Z",
+          "completed": "",
+          "id": 9
+        },
+        {
+          "title": "Go To Justin Bieber concert Stadium",
+          "category": "Event",
+          "duedate": "2023-12-27T18:30:00.000Z",
+          "completed": false,
+          "id": 10
+        },
+        {
+          "title": "Go TO Swim 2 fhj",
+          "category": "Health",
+          "duedate": "2023-12-28T18:30:00.000Z",
+          "completed": true,
+          "id": 11
+        },
+        {
+          "title": "Go to Doctor 1 56",
+          "category": "Health",
+          "duedate": "2023-12-30T18:30:00.000Z",
+          "completed": "",
+          "id": 12
         }
       ]
     },
@@ -90,6 +125,39 @@
       "password": "1234",
       "tasks": null,
       "id": 4
+    },
+    {
+      "username": "manali",
+      "password": "manali",
+      "tasks": [
+        {
+          "title": "study",
+          "category": "General",
+          "duedate": "2023-12-27T18:30:00.000Z",
+          "completed": false,
+          "id": 1
+        },
+        {
+          "title": "eat",
+          "category": "Health",
+          "duedate": "2023-12-26T18:30:00.000Z",
+          "completed": false,
+          "id": 2
+        }
+      ],
+      "id": 5
+    },
+    {
+      "username": "",
+      "password": "",
+      "tasks": null,
+      "id": 6
+    },
+    {
+      "username": "rohan2",
+      "password": "1234",
+      "id": 7,
+      "tasks": []
     }
   ]
 }
