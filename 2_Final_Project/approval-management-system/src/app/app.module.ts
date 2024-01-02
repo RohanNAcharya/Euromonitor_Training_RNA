@@ -5,19 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialImportsModule } from './Modules/material-import.module';
-
+import { ToastrModule } from 'ngx-toastr';
+import { UpdatecomponentComponent } from './updatecomponent/updatecomponent.component';
+import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UpdatecomponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialImportsModule
+    MaterialImportsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideClientHydration()

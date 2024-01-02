@@ -1,43 +1,41 @@
-.container {
+.container{
     display: flex;
-    height: 100vh; /* 100% of viewport height */
-    width: 100vw; /* 100% of viewport width */
-}
-
-.app-name {
-    flex: 3;
-    background-color: black;
-    color: white;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
+    background-image: url('../../assets/login-page-assets/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    align-items: center;
     justify-content: center;
 }
 
-.app-name h1 {
-    margin-top: 2rem; /* Adjusted for better spacing */
-    margin-left: 2rem; /* Adjusted for better spacing */
-    font-size: 4rem; /* Responsive font size */
+mat-card {
+    padding: 30px;
+    width: 500px;
+    background-color: #ccb3df;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    border-radius: 3px;
 }
 
-.auth-content-container {
-    flex: 2;
-    margin-top: 10%; /* Adjusted for better spacing */
-    margin-left: 2rem; /* Adjusted for better spacing */
+.mat-label-text{
+    padding-bottom: 50px;
 }
 
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
+mat-form-field{
     width: 100%;
+    height: 80px;
 }
 
-.example-full-width {
+
+.login-buttons{
+    display: flex;
     width: 100%;
-    height: 40px;
+    justify-content: space-between;
 }
 
-/* Style for buttons */
-button {
-    margin-right: 10px; /* Add some spacing between buttons */
+.login-buttons button{
+    margin-top: 15px;
+    width: 150px;
+    padding: 15px 15px;
 }
+
