@@ -17,15 +17,14 @@ export class DueDatePipe implements PipeTransform {
 
   returnData(daysDifference: number, value: string): string {
     const datePipe = new DatePipe('en-US');
-    if (daysDifference === 0) {
-      return `<span><b>Due Today</b></span>`;
-    } else if (daysDifference >= 1 && daysDifference <= 6) {
-      return `<span><b>Due in ${daysDifference} days</b></span>`;
-    } else if (daysDifference >= 7) {
-      return `<span><b>Due by ${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>`;
-    } else {
-      return `<span><b>${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>`;
-    }
+    let returnText: string = "";
+
+    (daysDifference === 0) ? returnText = `<span><b>Due Today</b></span>` : 
+      (daysDifference >= 1 && daysDifference <= 6) ? returnText =  `<span><b>Due in ${daysDifference} days</b></span>` :
+        (daysDifference >= 7) ? returnText = `<span><b>Due by ${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>` : 
+          returnText = `<span><b>${datePipe.transform(value, 'dd-MMMM-yyyy')}</b></span>`
+
+    return returnText;
   }
 
 }

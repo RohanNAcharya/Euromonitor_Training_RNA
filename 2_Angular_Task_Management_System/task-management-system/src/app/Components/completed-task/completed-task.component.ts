@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../../Services/task.service';
-import { Itask } from '../../Interfaces/Itask';
-import { Iuser } from '../../Interfaces/Iuser';
+import { TaskService } from '../../services/task.service';
+import { Itask } from '../../interfaces/Itask';
 
 @Component({
   selector: 'app-completed-task',
@@ -45,11 +44,11 @@ export class CompletedTaskComponent {
     this.getAllTasks();
   }
 
-  navigateBackToTaskList() {
+  public navigateBackToTaskList() {
     this.route.navigate(['/taskList'], { queryParams: { username: this.username, id: this.id } });
   }
 
-  getAllTasks(): void {
+  public getAllTasks(): void {
     this.taskService.getEmployeeList(this.id).subscribe({
       next: (data) => {
         this.comletedTasks = data.tasks.filter(task => task.completed)!;
@@ -57,7 +56,7 @@ export class CompletedTaskComponent {
     });
   }
 
-  deleteTask(taskId: number): void {
+  public deleteTask(taskId: number): void {
     this.taskService.deleteTask(this.id, taskId).subscribe({
       next: (res) => {
         alert("Task Deleted");

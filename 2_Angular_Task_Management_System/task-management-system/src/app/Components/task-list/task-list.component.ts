@@ -2,11 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditTaskFormComponent } from '../add-edit-task-form/add-edit-task-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../../Services/task.service';
-import { AuthService } from '../../Services/auth.service';
-import { CoreService } from '../../Services/core.service';
-import { Iuser } from '../../Interfaces/Iuser';
-import { Itask } from '../../Interfaces/Itask';
+import { TaskService } from '../../services/task.service';
+import { AuthService } from '../../services/auth.service';
+import { CoreService } from '../../services/core.service';
+import { Iuser } from '../../interfaces/Iuser';
+import { Itask } from '../../interfaces/Itask';
 
 @Component({
   selector: 'app-task-list',
@@ -57,7 +57,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  openAddEditEmpForm() {
+  public openAddEditEmpForm() {
     const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: { id: Number(this.id) } });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -68,7 +68,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  getAllTasks(): void {
+  public getAllTasks(): void {
     this.taskService.getEmployeeList(this.id).subscribe({
       next: (data) => {
         this.userData = data;
@@ -85,11 +85,11 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  onFilterChange(): void {
+  public onFilterChange(): void {
     this.getAllTasks();
   }
 
-  openEditForm(userData: Iuser, task: Itask): void {
+  public openEditForm(userData: Iuser, task: Itask): void {
     const dialogRef = this.dialog.open(AddEditTaskFormComponent, { data: { task, userData } });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -100,7 +100,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  deleteTask(user: Iuser, taskId: number): void {
+  public deleteTask(user: Iuser, taskId: number): void {
     this.taskService.deleteTask(user.id!, taskId).subscribe({
       next: (res) => {
         this.coreService.openSanckBar("Task Deleted");
@@ -110,7 +110,7 @@ export class TaskListComponent implements OnInit {
     })
   }
 
-  updateTaskCompleted(user: Iuser, taskId: number): void {
+  public updateTaskCompleted(user: Iuser, taskId: number): void {
     this.taskService.updateTaskCompleted(user.id!, taskId).subscribe({
       next: (res) => {
         this.coreService.openSanckBar("Task Status Updated");
@@ -120,13 +120,13 @@ export class TaskListComponent implements OnInit {
     })
   }
 
-  logout() {
+  public logout(): void {
     this.authService.loggedIn = false;
     this.router.navigate(['/home']);
     this.coreService.openSanckBar('Loged out Successfully!')
   }
 
-  navigateToCompleted() {
+  public navigateToCompleted(): void {
     this.router.navigate(['/completed'], { queryParams: { username: this.username, id: this.id } });
   }
 

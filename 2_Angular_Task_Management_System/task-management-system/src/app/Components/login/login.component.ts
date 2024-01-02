@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
-import { CoreService } from '../../Services/core.service';
-import { Iuser } from '../../Interfaces/Iuser';
+
+import { AuthService } from '../../services/auth.service';
+import { CoreService } from '../../services/core.service';
+import { Iuser } from '../../interfaces/Iuser';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent {
     });
   }
 
-  onFormSubmit() {
+  public onFormSubmit() {
     const username = this.login.value.username;
     const password = this.login.value.password;
     this.authService.validateLogin(username, password).subscribe({

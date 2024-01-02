@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
-import { Iuser } from '../Interfaces/Iuser';
-import { Itask } from '../Interfaces/Itask';
+import { Iuser } from '../interfaces/Iuser';
+import { Itask } from '../interfaces/Itask';
 
 
 @Injectable({
@@ -13,7 +13,7 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  addTask(id:number, task:Itask): Observable<Iuser>{
+  public addTask(id:number, task:Itask): Observable<Iuser>{
     const userTasksUrl = `${this.apiUrl}/${id}`;
     return this.http.get<Iuser>(userTasksUrl).pipe(
       switchMap(user => {
@@ -25,15 +25,14 @@ export class TaskService {
     )
   }
 
-  getEmployeeList(id: number): Observable<Iuser>{
+  public getEmployeeList(id: number): Observable<Iuser>{
     const userTasksUrl = `${this.apiUrl}/${id}`;
     return this.http.get<Iuser>(userTasksUrl);
   }
 
-  updateTask(userData:Iuser, oldTask:Itask, updatedTask:Itask): Observable<Iuser>{
+  public updateTask(userData:Iuser, oldTask:Itask, updatedTask:Itask): Observable<Iuser>{
     const userTasksUrl = `${this.apiUrl}/${userData.id}`;
     const indexToUpdate = userData.tasks.findIndex((task) => task.id === oldTask.id);
-    console.log(indexToUpdate);
     if(indexToUpdate !== -1){
       userData.tasks[indexToUpdate].category = updatedTask.category;
       userData.tasks[indexToUpdate].title = updatedTask.title;
@@ -43,7 +42,7 @@ export class TaskService {
     return this.http.put<Iuser>(userTasksUrl, userData);
   }
 
-  deleteTask(userId:number, taskId:number): Observable<Iuser>{
+  public deleteTask(userId:number, taskId:number): Observable<Iuser>{
     const userTasksUrl = `${this.apiUrl}/${userId}`;
     return this.http.get<Iuser>(userTasksUrl).pipe(
       switchMap(user => {
@@ -53,7 +52,7 @@ export class TaskService {
     )
   }
 
-  updateTaskCompleted(userId:number, taskId:number): Observable<Iuser>{
+  public updateTaskCompleted(userId:number, taskId:number): Observable<Iuser>{
     const userTasksUrl = `${this.apiUrl}/${userId}`;
     return this.http.get<Iuser>(userTasksUrl).pipe(
       switchMap(user => {

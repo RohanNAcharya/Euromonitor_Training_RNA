@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Iuser } from '../Interfaces/Iuser';
+import { Iuser } from '../interfaces/Iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  validateLogin(username:string, password:string): Observable<Iuser[]>{
+  public validateLogin(username:string, password:string): Observable<Iuser[]>{
     const params = new HttpParams()
       .set('username', username)
       .set('password', password);
@@ -20,14 +20,14 @@ export class AuthService {
     return this.http.get<Iuser[]>(`${this.baseUrl}`, { params });
   }
 
-  checkExistingUser(username:string): Observable<Iuser[]>{
+  public checkExistingUser(username:string): Observable<Iuser[]>{
     const params = new HttpParams()
       .set('username', username);
       
     return this.http.get<Iuser[]>(`${this.baseUrl}`, { params });
   }
 
-  addNewUser(data: Iuser): Observable<Iuser>{
+  public addNewUser(data: Iuser): Observable<Iuser>{
     return this.http.post<Iuser>(`${this.baseUrl}`, data);
   }
 

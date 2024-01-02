@@ -13,7 +13,7 @@ import { CompletedTaskComponent } from './Components/completed-task/completed-ta
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { DueDatePipe } from './Pipes/due-date.pipe';
+import { DueDatePipe } from './pipes/due-date.pipe';
 import { DatePipe } from '@angular/common';
 
 @NgModule({

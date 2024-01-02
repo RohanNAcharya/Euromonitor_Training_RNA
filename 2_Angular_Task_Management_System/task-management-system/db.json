@@ -65,7 +65,7 @@
           "id": 7
         },
         {
-          "title": "YG Strategy Study s",
+          "title": "YG Strategy Case Study ",
           "category": "Study",
           "duedate": "2023-12-26T18:30:00.000Z",
           "completed": true,
@@ -105,6 +105,13 @@
           "duedate": "2023-12-30T18:30:00.000Z",
           "completed": "",
           "id": 12
+        },
+        {
+          "title": "Study Maths",
+          "category": "Study",
+          "duedate": "2024-01-18T18:30:00.000Z",
+          "completed": "",
+          "id": 13
         }
       ]
     },
@@ -158,6 +165,27 @@
       "password": "1234",
       "id": 7,
       "tasks": []
+    },
+    {
+      "username": "mayura",
+      "password": "1234",
+      "id": 8,
+      "tasks": [
+        {
+          "title": "Go to gym",
+          "category": "Workout",
+          "duedate": "2024-01-05T18:30:00.000Z",
+          "completed": true,
+          "id": 1
+        },
+        {
+          "title": "Study Book Name",
+          "category": "Party",
+          "duedate": "2024-01-11T18:30:00.000Z",
+          "completed": "",
+          "id": 2
+        }
+      ]
     }
   ]
 }

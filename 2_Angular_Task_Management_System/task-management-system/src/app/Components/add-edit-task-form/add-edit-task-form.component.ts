@@ -1,10 +1,10 @@
 import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { TaskService } from '../../Services/task.service';
+import { TaskService } from '../../services/task.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CoreService } from '../../Services/core.service';
-import { Iuser } from '../../Interfaces/Iuser';
-import { Itask } from '../../Interfaces/Itask';
+import { CoreService } from '../../services/core.service';
+import { Iuser } from '../../interfaces/Iuser';
+import { Itask } from '../../interfaces/Itask';
 
 @Component({
   selector: 'app-add-edit-task-form',
@@ -34,7 +34,7 @@ export class AddEditTaskFormComponent {
     });
   }
 
-  onTaskSubmit(): void {
+  public onTaskSubmit(): void {
     if (this.taskForm.valid) {
       if (this.taskForm.value.title.trim() !== '' && isNaN(Number(this.taskForm.value.title))
         && this.taskForm.value.category !== '' && this.taskForm.value.duedate !== '') {
@@ -51,7 +51,7 @@ export class AddEditTaskFormComponent {
     }
   }
 
-  createNewTask(): void {
+  public createNewTask(): void {
     this.taskService.addTask(this.userData.id, this.taskForm.value).subscribe({
       next: (data) => {
         this.coreService.openSanckBar('Task added Sucessfully!');
@@ -63,7 +63,7 @@ export class AddEditTaskFormComponent {
     })
   }
 
-  updateTask(): void {
+  public updateTask(): void {
     this.taskService.updateTask(this.dialogData.userData, this.dialogData.task, this.taskForm.value).subscribe({
       next: (data) => {
         this.coreService.openSanckBar('Task updated Sucessfully!');

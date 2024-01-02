@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { CoreService } from '../../Services/core.service';
-import { Iuser } from '../../Interfaces/Iuser';
+import { CoreService } from '../../services/core.service';
+import { Iuser } from '../../interfaces/Iuser';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +24,7 @@ export class SignupComponent {
     });
   }
 
-  onSignupFormSubmit() {
+  public onSignupFormSubmit() {
     const username = this.signupForm.value.username;
     const password = this.signupForm.value.password;
     if (username === "" || username === undefined || username === null) {
@@ -38,7 +38,7 @@ export class SignupComponent {
     }
   }
 
-  processApiData(username: string) {
+  public processApiData(username: string) {
     this.authService.checkExistingUser(username).subscribe({
       next: (user: Iuser[]) => {
         if (user && user.length > 0) {

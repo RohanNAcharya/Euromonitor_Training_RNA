@@ -8,7 +8,7 @@ export class CoreService {
 
   constructor(private snackBar:MatSnackBar) { }
 
-  openSanckBar(message: string, action: string = "okay"){
+  public openSanckBar(message: string, action: string = "okay"){
     this.snackBar.open(message, action, {
       duration: 4000,
       verticalPosition: 'top'
