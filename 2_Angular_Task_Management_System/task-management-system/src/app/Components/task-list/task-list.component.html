@@ -1,0 +1,74 @@
+<mat-toolbar [ngStyle]="{'background-color': '#512DA8'}">
+    <span style="color: white; font-size: 30px; margin-left: 20px;">Task<i style="color: #FF4081;">Nest</i></span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button class="toolbar-button" 
+        [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="openAddEditEmpForm()">
+        Add New
+    </button>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="navigateToCompleted()">
+      Completed
+    </button>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="logout()">
+        Logout
+    </button>
+</mat-toolbar>
+
+<div class="main-body">
+    <div class="filter">
+        <mat-form-field appearance="outline" [ngStyle]="{'width': '300px'}">  
+            <mat-label>Filter By:</mat-label>
+            <mat-select [(ngModel)]="selectedFilter" (selectionChange)="onFilterChange()">
+                <mat-option value="all">All</mat-option>
+                <mat-option value="general">General</mat-option>
+                <mat-option value="event">Event</mat-option>
+                <mat-option value="home">Family/Home</mat-option>
+                <mat-option value="finance">Finance</mat-option>
+                <mat-option value="friends">Friends</mat-option>
+                <mat-option value="health">Health</mat-option>
+                <mat-option value="hobby">Hobby</mat-option>
+                <mat-option value="learning">Learning</mat-option>
+                <mat-option value="party">Party</mat-option>
+                <mat-option value="shopping">Shopping</mat-option>
+                <mat-option value="study">Study</mat-option>
+                <mat-option value="travel">Travel</mat-option>
+                <mat-option value="volunteer">Volunteer</mat-option>
+                <mat-option value="work">Work</mat-option>
+                <mat-option value="workout">Workout</mat-option>
+                <mat-option value="other">Other</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-radio-group [(ngModel)]="labelPosition" [ngStyle]="{'margin-left': '20px'}" (change)="onFilterChange()">
+            <mat-radio-button class="example-margin" value="date-added">Date Added</mat-radio-button>
+            <mat-radio-button class="example-margin" value="due-date">Due Date</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="task-container">
+        <ng-container *ngIf="filteredTasks.length; else noTasks">
+            <mat-card *ngFor="let task of filteredTasks">
+                <mat-card-content class="mat-card-container">
+                    <div class="category"><div class="chip" [ngStyle]="{'background-color': categoryColorMap[task.category]}">{{ task.category }}</div></div>
+                    <div class="task-title"><span><h2>{{ task.title }}</h2></span></div>
+                    <div class="due-date" [innerHTML]="task.duedate | dueDateFormat"></div>
+                    <div class="done-button" (click)="updateTaskCompleted(userData, task.id!)">
+                        <mat-chip color="primary" [ngStyle]="{'background-color': task.completed ? 'green' : 'transparent', 'color': task.completed ? 'white' : 'black'}">
+                            {{task.completed? 'Done': 'Pending' }}
+                        </mat-chip>
+                    </div>
+                    <div class="edit-button"><button mat-icon-button color="primary" (click)="openEditForm(userData, task)"><mat-icon>edit</mat-icon></button></div>
+                    <div class="delete-button"><button mat-icon-button color="warn" (click)="deleteTask(userData, task.id!)"><mat-icon>delete</mat-icon></button></div>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+        <ng-template #noTasks>
+            <mat-card>
+                <mat-card-content class="mat-card-container" [ngStyle]="{'color': 'red'}">
+                    <div class="no-tasks" style="width:100%; text-align: center">
+                        <h2>No tasks found</h2>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </ng-template>
+    </div>
+</div>
+

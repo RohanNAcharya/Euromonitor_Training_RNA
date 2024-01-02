@@ -1,0 +1,91 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.toolbar-button{
+    margin-left: 20px;
+}
+
+.heading {
+    padding-top: 30px;
+    margin: 0 auto;
+    color: #3c2345;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+.filter{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: baseline;
+
+  mat-label{
+    margin-right: 10px;
+    font-size: 20px;
+  }
+}
+
+mat-card{
+  margin-top: 10px;
+}
+
+.task-container {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.mat-card-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
+
+.category {
+  flex-basis: 10%;
+}
+
+.chip {
+  display: inline-block;
+  padding: 8px 12px; 
+  color: #fff; 
+  border-radius: 16px; 
+  margin: 4px; 
+  width: 85px;
+  text-align: center; 
+}
+
+.task-title {
+  flex-basis: 50%;
+  margin-left: 10px; 
+}
+
+.due-date {
+  flex-basis: 14%;
+}
+
+.done-button {
+  flex-basis: 8%;
+  display: flex;
+  justify-content: center;
+}
+
+.delete-button {
+  width: 8%;
+  display: flex;
+  justify-content: center;
+}
+
+.mat-chip {
+  margin: 0; 
+}
+
+.toolbar-button {
+  margin-left: 20px;
+}
+
+

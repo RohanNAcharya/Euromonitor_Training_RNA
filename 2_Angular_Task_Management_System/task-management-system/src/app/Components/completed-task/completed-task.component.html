@@ -1,0 +1,37 @@
+<mat-toolbar [ngStyle]="{'background-color': '#512DA8'}">
+    <span style="color: white; font-size: 30px; margin-left: 20px;">Task<i style="color: #FF4081;">Nest</i></span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button class="toolbar-button" [ngStyle]="{'background-color': '#1a0d23', 'color': 'white'}" (click)="navigateBackToTaskList()">
+      Back To Home
+    </button>
+</mat-toolbar>
+
+<div class="main-body">
+    <div mat-dialog-title>
+        <h1 class="heading">Completed Tasks</h1>
+    </div>
+
+    <div class="task-container">
+        <ng-container *ngIf="comletedTasks.length; else noTasks">
+        <mat-card *ngFor="let task of comletedTasks">
+            <mat-card-content class="mat-card-container">
+                <div class="category"><div class="chip" [ngStyle]="{'background-color': categoryColorMap[task.category]}">{{ task.category }}</div></div>
+                <div class="task-title"><span><h2>{{ task.title }}</h2></span></div>
+                <div class="due-date"><span>Due Date: <b>{{ task.duedate | date : 'dd-MMMM-yyyy' }}</b></span></div>
+                <div class="done-button"><mat-chip color="primary" [disabled]="true" [ngStyle]="{'background-color': 'green'}">Done</mat-chip></div>
+                <div class="delete-button"><button mat-icon-button color="warn" (click)="deleteTask(task.id!)"><mat-icon>delete</mat-icon></button></div>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+    <ng-template #noTasks>
+        <mat-card>
+            <mat-card-content class="mat-card-container" [ngStyle]="{'color': 'red'}">
+                <div class="no-tasks" style="width:100%; text-align: center">
+                    <h2>No tasks found</h2>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
+    </div>
+</div>
+
