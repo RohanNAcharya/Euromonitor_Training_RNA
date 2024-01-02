@@ -1,0 +1,89 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+        "id": "1",
+       "name": "<name>",
+        "userName" : "<user-name>",
+        "password" : "<password>",
+        "phoneNumber": "<phone-number>",
+        "approvalRequests": [
+            {
+                "requestId" : "<request-id>",
+                "purpose" : "<purpose>",
+                "description" : "<description>",
+                "approver" : "<approver>",
+                "estimatedCost" : "(Number)<estimated-cost>",
+                "advanceAmount": "(Number)<advance-amount>",
+                "spentAmount": "<spent-amount>",
+                "comments": "<comments>",
+                "documents": "<documents-link>",
+                "requestDate": "<request-date>",
+                "planDate": "<plan-date>",
+                "approvalStatus": "<approval-status>",
+                "approverComments": "<approver-comments>"
+            }
+        ]  
+    }
+],
+"managers": [
+    {
+        "id": "<id>",
+        "name": "<name>",
+        "userName" : "<user-name>",
+        "password" : "<password>",
+        "phoneNumber": "<phone-number>",
+        "approvalRequests": [
+            {
+                "requestId" : "<request-id>",
+                "purpose" : "<purpose>",
+                "description" : "<description>",
+                "approver" : "<approver>",
+                "estimatedCost" : "(Number)<estimated-cost>",
+                "advanceAmount": "(Number)<advance-amount>",
+                "spentAmount": "<spent-amount>",
+                "comments": "<comments>",
+                "documents": "<documents-link>",
+                "requestDate": "<request-date>",
+                "planDate": "<plan-date>",
+                "approvalStatus": "<approval-status>",
+                "approverComments": "<approver-comments>"
+            }
+        ], 
+        "requests" : [
+            {
+                "requestId" : "<request-id>",
+                "purpose" : "<purpose>",
+                "description" : "<description>",
+                "approver" : "<approver>",
+                "estimatedCost" : "(Number)<estimated-cost>",
+                "advanceAmount": "(Number)<advance-amount>",
+                "spentAmount": "<spent-amount>",
+                "comments": "<comments>",
+                "documents": "<documents-link>",
+                "uploadStatus": "(Boolean)<upload-status>",
+                "requestDate": "<request-date>",
+                "planDate": "<plan-date>",
+                "approvalStatus": "<approval-status>",
+                "approverComments": "<approver-comments>"
+            }
+        ]
+    }
+  ]
+}
