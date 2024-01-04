@@ -1,0 +1,42 @@
+a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+button:hover,
+a:hover {
+    background-color: #333333;
+}
+
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logout-button {
+    margin-left: auto;
+}
+
+.right-end,
+.left-end{
+    display: flex;
+    align-items: center; 
+}
+
+.right-end span{
+    margin-right: 20px;
+}
+
+.right-end.logout-button{
+    margin-right: 20px;
+}
+
+.active {
+    background-color: #333333;
+}
+
+.left-end a{
+    margin-left: 20px;
+}

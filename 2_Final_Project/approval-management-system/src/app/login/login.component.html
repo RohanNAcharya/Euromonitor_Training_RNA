@@ -1,32 +1,67 @@
 <div class="container">
+    <div class="heading">
+        <h1>Approval Management System</h1>
+    </div>
     <div class="login-container">
         <mat-card [ngStyle]="{'background-color': 'white'}">
             <mat-card-header>
-                <h2>Login</h2>
+                <h1><b>Login</b></h1>
             </mat-card-header>
             <mat-card-content>
-                <form>
-                    <div class="label"><mat-label>Enter Username</mat-label></div>
+                <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
+                    <mat-label>
+                        <h3><b>Enter Username</b></h3>
+                    </mat-label>
                     <mat-form-field class="form-field" appearance="outline">
                         <mat-label>Username</mat-label>
-                        <input matInput>
+                        <input matInput formControlName="username" />
+                        <mat-error *ngIf="loginForm.get('username')!.hasError('required') && loginForm.get('username')!.touched">
+                            *Username is required.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('username')!.hasError('noSpaceAllowed') && loginForm.get('username')!.touched">
+                            *Space not allowed.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('username')!.hasError('maxlength') && loginForm.get('username')!.touched">
+                            *Invalid username!
+                        </mat-error>
                     </mat-form-field>
 
-                    <div class="label"><mat-label>Enter Password</mat-label></div>
+                    <mat-label>
+                        <h3><b>Enter Password</b></h3>
+                    </mat-label>
                     <mat-form-field class="form-field" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput type="password">
+                        <input matInput type="password" formControlName="password" />
+                        <mat-error *ngIf="loginForm.get('password')!.hasError('required') && loginForm.get('password')!.touched">
+                            *Password required.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password')!.hasError('noSpaceAllowed') && loginForm.get('password')!.touched">
+                            *Invalid Password!
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password')!.hasError('minlength') && loginForm.get('password')!.touched">
+                            *Invalid Password!
+                        </mat-error>
                     </mat-form-field>
 
                     <div class="login-buttons">
                         <div class="user-login">
-                            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}">User Login</button>
+                            <button #userButton mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}"
+                                type="submit" (click)="handleClickedButton('user-button')">User Login</button>
                         </div>
                         <div class="manager-login">
-                            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}">Manager Login</button>
+                            <button #managerButton mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}"
+                                type="submit" (click)="handleClickedButton('manager-button')">Manager Login</button>
                         </div>
                     </div>
                 </form>
+                <mat-divider [ngStyle]="{'margin-top':'20px'}"></mat-divider>
+                <div class="new-user">
+                    <h3><b>New User :</b></h3>
+                    <div class="register">
+                        <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}"
+                            [routerLink]="'/register'">Register</button>
+                    </div>
+                </div>
             </mat-card-content>
         </mat-card>
     </div>

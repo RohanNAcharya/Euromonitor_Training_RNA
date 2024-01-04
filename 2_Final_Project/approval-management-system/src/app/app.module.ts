@@ -8,19 +8,39 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UpdatecomponentComponent } from './updatecomponent/updatecomponent.component';
 import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserNavComponent } from './user/user-nav/user-nav.component';
+import { ManagerNavComponent } from './manager-nav/manager-nav.component';
+import { UserRequestFormComponent } from './user/user-request-form/user-request-form.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserViewHistoryComponent } from './user/user-view-history/user-view-history.component';
+import { UserMyRequestsComponent } from './user/user-my-requests/user-my-requests.component';
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UpdatecomponentComponent
+    UpdatecomponentComponent,
+    RegisterComponent,
+    UserNavComponent,
+    ManagerNavComponent,
+    UserRequestFormComponent,
+    UserHomeComponent,
+    UserViewHistoryComponent,
+    UserMyRequestsComponent,
+    LogoutDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialImportsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

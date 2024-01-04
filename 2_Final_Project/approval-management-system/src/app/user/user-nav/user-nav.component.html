@@ -1,0 +1,17 @@
+<mat-toolbar [ngStyle]="{'background-color': 'black', 'color': 'white'}">
+    <div class="left-end">
+        <button mat-icon-button class="home-button" routerLink="user-request-form" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">
+            <mat-icon>home</mat-icon>
+        </button>
+        <a routerLink="user-my-requests" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">My Requests</a>
+        <a routerLink="user-view-history" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">View History</a>    
+    </div>
+    <div class="right-end">
+        <span>Jennie Ruby</span>
+        <button mat-icon-button class="logout-button" [ngStyle]="{'margin-left': 'auto'}" (click)="openLogoutDialog()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+    
