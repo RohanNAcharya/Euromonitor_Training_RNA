@@ -1,6 +1,6 @@
 export interface Irequest {
     requestId: string;
-    requestedby: string;
+    requestedBy: string;
     requestedDate: string;
     purpose: string;
     description: string;

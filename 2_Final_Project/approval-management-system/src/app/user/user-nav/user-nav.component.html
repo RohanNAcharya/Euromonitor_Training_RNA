@@ -7,7 +7,7 @@
         <a routerLink="user-view-history" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">View History</a>    
     </div>
     <div class="right-end">
-        <span>Jennie Ruby</span>
+        <span>{{currentUserName}}</span>
         <button mat-icon-button class="logout-button" [ngStyle]="{'margin-left': 'auto'}" (click)="openLogoutDialog()">
             <mat-icon>logout</mat-icon>
         </button>

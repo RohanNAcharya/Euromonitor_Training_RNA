@@ -11,6 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './user-nav.component.css'
 })
 export class UserNavComponent {
+  currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+  currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
+                    + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
+
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,

@@ -1,1 +1,61 @@
-<p>user-my-requests works!</p>
+<div class="container">
+    <div class="header">
+        <div class="back-button">
+            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}">Back</button>
+        </div>
+        <div class="heading">
+            <p>View Latest Requests</p>
+        </div>
+    </div>
+    <div class="requests-list">
+        <div class="outer-mat-card">
+            <div class="outer-mat-content" *ngFor="let request of currentUserRequests">
+                <mat-card class="card" [ngStyle]="{'margin-left': '0px'}">
+                    <mat-card-header class="mat-header">
+                        <mat-card-title class="mat-title">Request-ID</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="request-id">
+                        <div><p>Request-ID: {{request.requestId}}</p></div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="card">
+                    <mat-card-header class="mat-header">
+                        <mat-card-title class="mat-title">Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="details">
+                        <div><p>Status: {{request.approvalStatus}}</p></div>
+                        <div><p></p></div>
+                        <div><p>Purpose: {{request.purpose}}</p></div>
+                        <div><p>Estimated Cost: {{request.estimatedCost}}</p></div>
+                        <div><p>Advance Amount: {{request.advanceAmount}}</p></div>
+                        <div><p>Plan Date: {{request.planDate}}</p></div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="card">
+                    <mat-card-header class="mat-header">
+                        <mat-card-title class="mat-title">Approver</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="approver">
+                        <img src="assets/user-my-requests-assets/person.png" alt="Manager" style="max-width: 60%; max-height: 60%; margin-bottom: 10px; margin-top: 15px">
+                        <p>{{managers[request.approver]}}</p>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="card">
+                    <mat-card-header class="mat-header">
+                        <mat-card-title class="mat-title">Actions</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="actions">
+                        <div class="initiated-button">
+                            <div class="edit-button"><button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white'}">Edit</button></div>
+                            <div class="withdraw-button"><button mat-raised-button  [ngStyle]="{'background-color': '#000080', 'color': 'white'}">Withdraw</button></div>
+                        </div>
+                        <!-- <div class="approved-button">
+                            <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#006680', 'color': 'white'}">Upload</button></div>
+                        </div> -->
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Irequest } from '../interfaces/Irequest';
 import { Observable, switchMap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,12 @@ export class RequestsService {
         return this.http.post<Irequest>(this.requests_apiurl, request);
       })
     )
+  }
+
+  public getRequests(username: string): Observable<Irequest[]>{
+    const params = new HttpParams()
+                        .set('requestedBy', username);
+    return this.http.get<Irequest[]>(`${this.requests_apiurl}`, { params });
   }
 
   public updateRequestId(requestId: number): string{
