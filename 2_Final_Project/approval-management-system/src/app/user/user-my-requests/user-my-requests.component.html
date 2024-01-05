@@ -1,7 +1,7 @@
 <div class="container">
     <div class="header">
         <div class="back-button">
-            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}">Back</button>
+            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" [routerLink]="'/user-home/user-request-form'">Back</button>
         </div>
         <div class="heading">
             <p>View Latest Requests</p>
@@ -15,7 +15,7 @@
                         <mat-card-title class="mat-title">Request-ID</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="request-id">
-                        <div><p>Request-ID: {{request.requestId}}</p></div>
+                        <div><h2><b>{{request.requestId | uppercase}}</b></h2></div>
                     </mat-card-content>
                 </mat-card>
                 <mat-card class="card">
@@ -23,12 +23,14 @@
                         <mat-card-title class="mat-title">Details</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="details">
-                        <div><p>Status: {{request.approvalStatus}}</p></div>
-                        <div><p></p></div>
-                        <div><p>Purpose: {{request.purpose}}</p></div>
-                        <div><p>Estimated Cost: {{request.estimatedCost}}</p></div>
-                        <div><p>Advance Amount: {{request.advanceAmount}}</p></div>
-                        <div><p>Plan Date: {{request.planDate}}</p></div>
+                        <div class="approval-status">
+                            <p><span [ngStyle]="{'background-color': request.approvalStatus === 'initiated' ? '#800040' : request.approvalStatus === 'approved' ? '#191966' : '#cc0000',
+                                'color': 'white'}">{{request.approvalStatus[0] | uppercase}}{{request.approvalStatus.slice(1)}}</span></p>
+                        </div>
+                        <div><p><b>Purpose:</b> {{request.purpose}}</p></div>
+                        <div><p><b>Estimated Cost:</b> {{request.estimatedCost | currency : 'INR'}}</p></div>
+                        <div><p><b>Advance Amount:</b> {{request.advanceAmount | currency : 'INR'}}</p></div>
+                        <div><p><b>Plan Date:</b> {{request.planDate}}</p></div>
                     </mat-card-content>
                 </mat-card>
                 <mat-card class="card">
@@ -37,7 +39,7 @@
                     </mat-card-header>
                     <mat-card-content class="approver">
                         <img src="assets/user-my-requests-assets/person.png" alt="Manager" style="max-width: 60%; max-height: 60%; margin-bottom: 10px; margin-top: 15px">
-                        <p>{{managers[request.approver]}}</p>
+                        <p><b>{{managers[request.approver]}}</b></p>
                     </mat-card-content>
                 </mat-card>
                 <mat-card class="card">
@@ -45,13 +47,16 @@
                         <mat-card-title class="mat-title">Actions</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="actions">
-                        <div class="initiated-button">
+                        <div class="initiated-button" *ngIf="request.approvalStatus === 'initiated'">
                             <div class="edit-button"><button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white'}">Edit</button></div>
                             <div class="withdraw-button"><button mat-raised-button  [ngStyle]="{'background-color': '#000080', 'color': 'white'}">Withdraw</button></div>
                         </div>
-                        <!-- <div class="approved-button">
+                        <div class="approved-button" *ngIf="request.approvalStatus === 'approved'">
                             <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#006680', 'color': 'white'}">Upload</button></div>
-                        </div> -->
+                        </div>
+                        <div class="delete-button" *ngIf="request.approvalStatus === 'rejected'">
+                            <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#990000', 'color': 'white'}">Delete</button></div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </div>

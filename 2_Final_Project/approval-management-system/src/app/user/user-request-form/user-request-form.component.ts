@@ -96,7 +96,7 @@ export class UserRequestFormComponent implements OnInit {
       documents: "",
       uploadStatus: false,
       requestDate: "",
-      approvalStatus: false,
+      approvalStatus: "initiated",
       approverComments: "",
       withdrawn: false
     }

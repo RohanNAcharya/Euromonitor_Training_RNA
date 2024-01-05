@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { UpdatecomponentComponent } from './updatecomponent/updatecomponent.component';
 import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    UpdatecomponentComponent,
     RegisterComponent,
     UserNavComponent,
     ManagerNavComponent,

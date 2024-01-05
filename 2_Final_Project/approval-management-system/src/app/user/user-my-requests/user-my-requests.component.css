@@ -3,7 +3,6 @@
     flex-direction: column;
     background-color: #d5d5dd;
     /* background-color: #8f6da5; */
-    /* height:100%; */
 }
 
 .header{
@@ -41,7 +40,7 @@
 }
 
 .outer-mat-card{
-    width: 1400px;
+    width: 1420px;
 }
 
 .outer-mat-content{
@@ -56,8 +55,6 @@
 
 .card{
     width: 340px;
-    margin-right: 2px;
-    margin-left: 2px;
 }
 
 .card mat-card-content{
@@ -91,6 +88,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .details{
@@ -124,5 +122,14 @@
 
 .edit-button{
     margin-bottom:20px;
+}
+
+.approval-status span{
+    float: right;
+    width: 100px;
+    text-align: center;
+    padding: 10px 10px;
+    margin-right: -20px;
+    margin-bottom: 10px;
 }
 

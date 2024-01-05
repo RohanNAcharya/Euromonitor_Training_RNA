@@ -13,7 +13,7 @@ export interface Irequest {
     documents: string;
     uploadStatus: boolean;
     requestDate: string;
-    approvalStatus: boolean;
+    approvalStatus: string;
     approverComments: string;
     withdrawn: boolean;
 }
