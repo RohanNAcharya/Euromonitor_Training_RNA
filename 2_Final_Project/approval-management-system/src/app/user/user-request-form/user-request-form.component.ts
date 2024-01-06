@@ -79,8 +79,6 @@ export class UserRequestFormComponent implements OnInit {
   }
 
   public updateRequest(): void {
-    let planDateValue = this.approvalRequestForm.get('planDate')!.value;
-    let planDateUpdate = (planDateValue !== null) ? this.formatDate(planDateValue) :  planDateValue;
     this.request = {
       requestId: "",
       requestedBy: this.currentUser.username.toLowerCase(),
@@ -90,7 +88,7 @@ export class UserRequestFormComponent implements OnInit {
       approver: this.approvalRequestForm.get('approver')!.value,
       estimatedCost: this.approvalRequestForm.get('estimatedCost')!.value,
       advanceAmount: this.approvalRequestForm.get('advanceAmount')!.value,
-      planDate: planDateUpdate,
+      planDate: this.approvalRequestForm.get('planDate')!.value,
       spentAmount: "",
       userComments: "",
       documents: "",

@@ -9,57 +9,68 @@
     </div>
     <div class="requests-list">
         <div class="outer-mat-card">
-            <div class="outer-mat-content" *ngFor="let request of currentUserRequests">
-                <mat-card class="card" [ngStyle]="{'margin-left': '0px'}">
-                    <mat-card-header class="mat-header">
-                        <mat-card-title class="mat-title">Request-ID</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="request-id">
-                        <div><h2><b>{{request.requestId | uppercase}}</b></h2></div>
+            <ng-container *ngIf="currentUserRequests.length; else noRequests">
+                <div class="outer-mat-content" *ngFor="let request of currentUserRequests;">
+                    <mat-card class="card" [ngStyle]="{'margin-left': '0px'}">
+                        <mat-card-header class="mat-header">
+                            <mat-card-title class="mat-title">Request-ID</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="request-id">
+                            <div><h2><b>{{request.requestId | uppercase}}</b></h2></div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="card">
+                        <mat-card-header class="mat-header">
+                            <mat-card-title class="mat-title">Details</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="details">
+                            <div class="approval-status">
+                                <p><span [ngStyle]="{'background-color': request.approvalStatus === 'initiated' ? '#800040' : request.approvalStatus === 'approved' ? '#191966' : '#cc0000',
+                                    'color': 'white'}">{{request.approvalStatus[0] | uppercase}}{{request.approvalStatus.slice(1)}}</span></p>
+                            </div>
+                            <div><p><b>Purpose:</b> {{request.purpose}}</p></div>
+                            <div><p><b>Estimated Cost:</b> {{request.estimatedCost | currency : 'INR'}}</p></div>
+                            <div><p><b>Advance Amount:</b> {{request.advanceAmount | currency : 'INR'}}</p></div>
+                            <div><p><b>Plan Date:</b> {{request.planDate | date}}</p></div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="card">
+                        <mat-card-header class="mat-header">
+                            <mat-card-title class="mat-title">Approver</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="approver">
+                            <img src="assets/user-my-requests-assets/person.png" alt="Manager" style="max-width: 60%; max-height: 60%; margin-bottom: 10px; margin-top: 15px">
+                            <p><b>{{managers[request.approver]}}</b></p>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="card">
+                        <mat-card-header class="mat-header">
+                            <mat-card-title class="mat-title">Actions</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="actions">
+                            <div class="initiated-button" *ngIf="request.approvalStatus === 'initiated'">
+                                <div class="edit-button"><button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white'}" (click)="openEditRequestForm(request)">Edit</button></div>
+                                <div class="withdraw-button"><button mat-raised-button  [ngStyle]="{'background-color': '#000080', 'color': 'white'}" (click)="openWithdrawDialog(request)">Withdraw</button></div>
+                            </div>
+                            <div class="approved-button" *ngIf="request.approvalStatus === 'approved'">
+                                <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#006680', 'color': 'white'}" (click)="onUploadButtonClicked(request)">Upload</button></div>
+                            </div>
+                            <div class="delete-button" *ngIf="request.approvalStatus === 'rejected'">
+                                <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#990000', 'color': 'white'}">Delete</button></div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </ng-container>
+            <ng-template #noRequests>
+                <mat-card>
+                    <mat-card-content class="mat-card-container" [ngStyle]="{'color': 'red'}">
+                        <div class="no-requests" style="width:100%; text-align: center">
+                            <h2>No requests found! :(</h2>
+                        </div>
                     </mat-card-content>
                 </mat-card>
-                <mat-card class="card">
-                    <mat-card-header class="mat-header">
-                        <mat-card-title class="mat-title">Details</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="details">
-                        <div class="approval-status">
-                            <p><span [ngStyle]="{'background-color': request.approvalStatus === 'initiated' ? '#800040' : request.approvalStatus === 'approved' ? '#191966' : '#cc0000',
-                                'color': 'white'}">{{request.approvalStatus[0] | uppercase}}{{request.approvalStatus.slice(1)}}</span></p>
-                        </div>
-                        <div><p><b>Purpose:</b> {{request.purpose}}</p></div>
-                        <div><p><b>Estimated Cost:</b> {{request.estimatedCost | currency : 'INR'}}</p></div>
-                        <div><p><b>Advance Amount:</b> {{request.advanceAmount | currency : 'INR'}}</p></div>
-                        <div><p><b>Plan Date:</b> {{request.planDate}}</p></div>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="card">
-                    <mat-card-header class="mat-header">
-                        <mat-card-title class="mat-title">Approver</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="approver">
-                        <img src="assets/user-my-requests-assets/person.png" alt="Manager" style="max-width: 60%; max-height: 60%; margin-bottom: 10px; margin-top: 15px">
-                        <p><b>{{managers[request.approver]}}</b></p>
-                    </mat-card-content>
-                </mat-card>
-                <mat-card class="card">
-                    <mat-card-header class="mat-header">
-                        <mat-card-title class="mat-title">Actions</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="actions">
-                        <div class="initiated-button" *ngIf="request.approvalStatus === 'initiated'">
-                            <div class="edit-button"><button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white'}">Edit</button></div>
-                            <div class="withdraw-button"><button mat-raised-button  [ngStyle]="{'background-color': '#000080', 'color': 'white'}">Withdraw</button></div>
-                        </div>
-                        <div class="approved-button" *ngIf="request.approvalStatus === 'approved'">
-                            <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#006680', 'color': 'white'}">Upload</button></div>
-                        </div>
-                        <div class="delete-button" *ngIf="request.approvalStatus === 'rejected'">
-                            <div class="upload-button"><button mat-raised-button [ngStyle]="{'background-color': '#990000', 'color': 'white'}">Delete</button></div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+            </ng-template>
         </div>
     </div>
 </div>

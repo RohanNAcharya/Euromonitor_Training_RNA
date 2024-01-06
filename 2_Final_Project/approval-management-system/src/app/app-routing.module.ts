@@ -9,6 +9,7 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserMyRequestsComponent } from './user/user-my-requests/user-my-requests.component';
 import { UserViewHistoryComponent } from './user/user-view-history/user-view-history.component';
 import { CanActivateUser } from './guards/auth.guard';
+import { UserUploadBillComponent } from './user/user-upload-bill/user-upload-bill.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
     {path: 'user-request-form', component: UserRequestFormComponent, /*canActivate: [CanActivateUser]*/},
     {path: '', redirectTo: 'user-request-form', pathMatch: 'full'},
     {path: 'user-my-requests', component: UserMyRequestsComponent, /*canActivate: [CanActivateUser]*/},
-    {path: 'user-view-history', component: UserViewHistoryComponent, /*canActivate: [CanActivateUser]*/}
+    {path: 'user-view-history', component: UserViewHistoryComponent, /*canActivate: [CanActivateUser]*/},
+    {path: 'user-upload-bill', component: UserUploadBillComponent, /*canActivate: [CanActivateUser]*/}
   ]},
   {path: 'manager-home', component: ManagerNavComponent}
 ];

@@ -16,4 +16,5 @@ export interface Irequest {
     approvalStatus: string;
     approverComments: string;
     withdrawn: boolean;
+    id?: number;
 }

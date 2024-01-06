@@ -30,6 +30,11 @@ export class RequestsService {
     return this.http.get<Irequest[]>(`${this.requests_apiurl}`, { params });
   }
 
+  public updateRequest(request: Irequest): Observable<Irequest> {
+    const url = `${this.requests_apiurl}/${request.id}`;
+    return this.http.put<Irequest>(url, request)
+  }
+
   public updateRequestId(requestId: number): string{
     let finalReqId!:string;
     (requestId<100) ? 

@@ -17,6 +17,10 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserViewHistoryComponent } from './user/user-view-history/user-view-history.component';
 import { UserMyRequestsComponent } from './user/user-my-requests/user-my-requests.component';
 import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
+import { EditRequestComponent } from './edit-request/edit-request.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { WithdrawDialogComponent } from './withdraw-dialog/withdraw-dialog.component';
+import { UserUploadBillComponent } from './user/user-upload-bill/user-upload-bill.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
     UserViewHistoryComponent,
     UserMyRequestsComponent,
     LogoutDialogComponent,
+    EditRequestComponent,
+    WithdrawDialogComponent,
+    UserUploadBillComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
     MaterialImportsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     provideClientHydration()

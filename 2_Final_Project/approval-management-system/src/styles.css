@@ -6,6 +6,7 @@ body {
     padding: 0px 0px;
     max-width: 100%;
     overflow-x: hidden;
+    background-color: #d5d5dd;
   }
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
