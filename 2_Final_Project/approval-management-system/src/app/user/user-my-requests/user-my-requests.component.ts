@@ -79,7 +79,7 @@ export class UserMyRequestsComponent implements OnInit{
   }
 
   public onUploadButtonClicked(request: Irequest): void {
-    // sessionStorage.setItem('currentRequest', JSON.stringify(request));
+    sessionStorage.setItem('currentRequest', JSON.stringify(request));
     this.router.navigate(['user-home/user-upload-bill']);
   }
 }

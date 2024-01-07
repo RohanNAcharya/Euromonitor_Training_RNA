@@ -1,0 +1,104 @@
+<div class="header-container">
+    <div class="header">
+        <div class="back-button">
+            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" (click)="onClickBack()">Back</button>
+        </div>
+        <div class="heading">
+            <p>Upload Bill</p>
+        </div>
+    </div>
+</div>
+<div class="body-container">
+    <div class="request-details-container">
+        <mat-card [ngStyle]="{'width': '400px'}">
+            <mat-card-header class="centered-header">
+                <h2><b>Request Details</b></h2>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="request-body">
+                    <div class="upper-request-body" [ngStyle]="{'background-color': '#082752', 'color': 'white'}">
+                        <div class="request-id"><p>{{request.requestId | uppercase}}</p></div>
+                        <img src="assets/user-upload-bill-assets/person.png" alt="Image" style="max-width: 30%; max-height: 30%;">
+                        <p style="font-size: 17px;">{{fullName}}</p>
+                        <p class="phone-no">+91{{currentUser.contact}}</p>
+                    </div>
+
+                    <div class="lower-request-body">
+                        <h2>{{request.purpose}}</h2>
+                        <p>{{request.description}}</p>
+                        <div class="amount-date">
+                            <div class="estimated-amount">
+                                <p style="font-size: 15px">{{request.estimatedCost}}</p>
+                                <p style="margin-top: -10px; font-weight: bold; width: 120px;">Estimated Amount</p>
+                            </div>
+                            <div class="advance-amount">
+                                <p style="font-size: 15px">{{request.advanceAmount}}</p>
+                                <p style="margin-top: -10px; font-weight: bold; width: 120px;">Advance Amount</p>
+                            </div>
+                            <div class="plan-date">
+                                <p style="font-size: 15px">{{request.planDate | date}}</p>
+                                <p style="margin-top: -10px; font-weight: bold; width: 120px;">Plan Date</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="bill-upload-form-container">
+        <mat-card [ngStyle]="{'width': '700px'}">
+            <mat-card-header class="centered-header">
+                <h1><b>Budget Approval Request</b></h1>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="billUploadForm" (ngSubmit)="onBillFormSubmit()" #uploadForm>
+                    <div class="row">
+                        <mat-label>
+                            <h2><b>Spent Amount:</b></h2>
+                        </mat-label>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <input matInput formControlName = "spentAmount" />
+                            <mat-error *ngIf="billUploadForm.get('spentAmount')!.hasError('required') && billUploadForm.get('spentAmount')!.touched">
+                                *SpentAmount is required.
+                            </mat-error>
+                            <mat-error *ngIf="billUploadForm.get('spentAmount')!.hasError('pattern') && billUploadForm.get('spentAmount')!.touched">
+                                *Amount Entered is invalid.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-label>
+                            <h2><b>Comments(<span style="color:brown; font-size: 15px;">If Actual Amount is greater than estimated</span>):</b></h2>
+                        </mat-label>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <textarea matInput rows="4" formControlName = "userComments"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-label>
+                            <h2><b>Upload Document</b></h2>
+                        </mat-label>
+                        <div class="file-filename">
+                            <input type="file" class="file-upload" (change)="getFile($event)">
+                            <div class="file-name" *ngIf="request.uploadStatus"><p>Uploaded File: {{uploadedFileName}}</p></div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="submit-cancel-buttons">
+                        <div class="submit-button">
+                            <button mat-raised-button [ngStyle]="{'background-color': '#004d00', 'color': 'white'}"
+                                type="submit">Submit</button>
+                        </div>
+                        <div class="cancel-button">
+                            <button mat-raised-button [ngStyle]="{'background-color': '#663d00', 'color': 'white'}"
+                            type="button" (click)="onClickCancel()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+.header-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    padding: 10px 20px;
+    display: flex;
+    align-items: baseline;
+}
+
+.back-button{
+    width: 10%;
+}
+
+.heading{
+    width: 90%;
+}
+
+.heading p{
+    padding-top: 10px;
+    width: 100%;
+    margin-left: 37%;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.back-button button{
+    background-color: #333333;
+    color : white;
+    width: 80px;
+}
+
+.body-container{
+    padding: 20px 20px;
+    display: flex;
+}
+
+.centered-header {
+    display: flex;
+    justify-content: center;
+}
+
+.request-details-container{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upper-request-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000066;
+}
+
+.request-id{
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 15px;
+    margin-right: -250px;
+    background-color: #464670;
+}
+
+.request-id p{
+    font-size: 16px;
+}
+
+.lower-request-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+.amount-date{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.estimated-amount,
+.advance-amount,
+.plan-date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    flex-grow: 1; 
+    font-size: 13px;
+}
+
+.plan-date,
+.advance-amount{
+    margin-left: 10px;
+}
+
+.bill-upload-form-container mat-card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+}
+
+.form-field{
+    width: 100%;
+}
+
+.file-upload{
+    border: none;
+    padding-left: 40px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #333333;
+    color: white;
+}
+
+.submit-cancel-buttons{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-button{
+    margin-left: 20px;
+}
+
+.file-filename{
+    display: flex;
+}
+
+.file-name{
+    margin-left: 20px;
+}

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit{
 
         if(user && user.length > 0){
           this.authService.loggedIn = true;
-          sessionStorage.setItem('currentUser', JSON.stringify({ username: username, role: 'employee', firstname: user[0].firstname, lastname: user[0].lastname}));
+          sessionStorage.setItem('currentUser', JSON.stringify({ username: username, role: 'employee', firstname: user[0].firstname, lastname: user[0].lastname, contact: user[0].contact}));
           this.router.navigate(['/user-home']);
           this.toastr.success('Logged In Successfully!');
         }

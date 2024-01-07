@@ -1,1 +1,41 @@
-<p>user-view-history works!</p>
+<div class="header-container">
+    <div class="header">
+        <div class="back-button">
+            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}">Back</button>
+        </div>
+        <div class="heading">
+            <p>Request History</p>
+        </div>
+    </div>
+</div>
+<div class="body-container">
+    <div class="filter-container">
+        <form>
+            <div class="filter-items-container">
+                <div class="from-date">
+                        <mat-label><h3><b>From:</b></h3></mat-label>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <input matInput [matDatepicker]="picker"/>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                </div>
+                <div class="to-date">
+                        <mat-label><h3><b>To:</b></h3></mat-label>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <input matInput [matDatepicker]="picker" />
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                </div>
+                <div class="generate-button">
+                    <button mat-raised-button [ngStyle]="{'background-color': '#000033', 'color': 'white', 'width': '90px', 'height': '40px'}"
+                        type="button">Generate</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="requests-table-container">
+        
+    </div>
+</div>

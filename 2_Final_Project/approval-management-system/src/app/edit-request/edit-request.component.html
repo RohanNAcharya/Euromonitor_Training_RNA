@@ -1,0 +1,90 @@
+<mat-card>
+    <mat-card-header>
+        <h1><b>Update request</b></h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="approvalRequestUpdateForm" (ngSubmit)="onApprovalRequestUpdate()" #myForm>
+            <div>
+                <mat-label>
+                    <h2><b>Purpose?</b></h2>
+                </mat-label>
+                <mat-form-field class="form-field" appearance="outline">
+                    <input matInput formControlName="purpose" />
+                    <mat-error *ngIf="approvalRequestUpdateForm.get('purpose')!.hasError('required') && approvalRequestUpdateForm.get('purpose')!.touched">
+                        *Purpose is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-label>
+                    <h2><b>Description(<span style="color:brown; font-size: 15px;">Briefly explain the purpose of request</span>):</b></h2>
+                </mat-label>
+                <mat-form-field class="form-field" appearance="outline">
+                    <textarea matInput rows="3" formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="row-field" [ngStyle]="{'display': 'flex', 'margin-top': '50px'}">
+                <div class="row-field-1">
+                    <mat-label><h2><b>Who's Your Approver?</b></h2></mat-label>
+                    <mat-form-field class="form-field" appearance="outline">
+                        <mat-select placeholder="Select" formControlName="approver">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let manager of allManagers" [value]="manager.username">
+                                {{manager.firstname[0].toUpperCase() + manager.firstname.slice(1) + ' '}}
+                                {{manager.lastname[0].toUpperCase() + manager.lastname.slice(1)}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="approvalRequestUpdateForm.get('approver')!.invalid && approvalRequestUpdateForm.get('approver')!.touched">
+                            *Please select a valid approver.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row-field-2">
+                    <mat-label><h2><b>Estimated Cost:</b></h2></mat-label>
+                    <mat-form-field class="form-field" appearance="outline">
+                        <input matInput formControlName="estimatedCost" />
+                        <span matPrefix [ngStyle]="{'padding-left': '15px', 'font-size': '20px'}">&#8377;</span>
+                        <mat-error *ngIf="approvalRequestUpdateForm.get('estimatedCost')!.invalid && approvalRequestUpdateForm.get('estimatedCost')!.touched">
+                            *Amount Entered is invalid.
+                        </mat-error>
+                    </mat-form-field>
+                </div>                        
+            </div>
+
+            <div class="row-field" [ngStyle]="{'display': 'flex'}">
+                <div class="row-field-1">
+                    <mat-label><h2><b>Advance Amount:</b></h2></mat-label>
+                    <mat-form-field class="form-field" appearance="outline">
+                        <span matPrefix [ngStyle]="{'padding-left': '15px', 'font-size': '20px'}">&#8377;</span>
+                        <input matInput formControlName="advanceAmount" />
+                        <mat-error *ngIf="approvalRequestUpdateForm.get('advanceAmount')!.invalid && approvalRequestUpdateForm.get('advanceAmount')!.touched">
+                            *Amount Entered is invalid.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row-field-2">
+                    <mat-label><h2><b>Plan Date:</b></h2></mat-label>
+                    <mat-form-field class="form-field" appearance="outline">
+                        <input matInput [matDatepicker]="picker" formControlName="planDate" />
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="approvalRequestUpdateForm.get('planDate')!.hasError('required') && approvalRequestUpdateForm.get('planDate')!.touched">
+                            *Plan Date is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>                        
+            </div>
+
+            <div class="submit-cancel-buttons">
+                <div class="submit-button">
+                    <button #userButton mat-raised-button [ngStyle]="{'background-color': '#006080', 'color': 'white'}"
+                        type="submit">Update</button>
+                </div>
+                <div class="cancel-button">
+                    <button #managerButton mat-raised-button [ngStyle]="{'background-color': '#4d4d4d', 'color': 'white'}"
+                    type="button" [mat-dialog-close]="false">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

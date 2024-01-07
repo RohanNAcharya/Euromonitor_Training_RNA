@@ -1,0 +1,9 @@
+<mat-card [ngStyle]="{'padding': '20px'}">
+    <mat-card-content>
+        <h2>Are you sure you want to withdraw your request?</h2>
+        <div class="button">
+            <button mat-button color="warn" (click)="onConfirmProceed()">Proceed</button>
+            <button mat-button (click)="closeDialog()" [ngStyle]="{'margin-left': '10px'}">Cancel</button>
+        </div>
+    <mat-card-content>
+<mat-card>
