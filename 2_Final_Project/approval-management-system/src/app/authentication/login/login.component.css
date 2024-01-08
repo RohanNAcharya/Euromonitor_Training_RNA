@@ -6,7 +6,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-image: url('../../assets/login-page-assets/background-image.jpg');
+    background-image: url('../../../assets/login-page-assets/background-image.jpg');
     background-size: cover;
     background-position: center;
     align-items: center;

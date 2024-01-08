@@ -82,7 +82,7 @@ export class UserRequestFormComponent implements OnInit {
     this.request = {
       requestId: "",
       requestedBy: this.currentUser.username.toLowerCase(),
-      requestedDate: this.formatDate(new Date()),
+      requestedDate: new Date(),
       purpose: this.approvalRequestForm.get('purpose')!.value,
       description: this.approvalRequestForm.get('description')!.value,
       approver: this.approvalRequestForm.get('approver')!.value,
@@ -98,17 +98,6 @@ export class UserRequestFormComponent implements OnInit {
       approverComments: "",
       withdrawn: false
     }
-  }
-
-  private formatDate(date: Date | string): string {
-    if (typeof date === 'string') {
-      date = new Date(date);
-    }
-
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-    return day + '-' + month + '-' + year;
   }
 
 }

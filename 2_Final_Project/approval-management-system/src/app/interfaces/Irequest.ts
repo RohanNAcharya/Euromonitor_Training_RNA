@@ -1,7 +1,7 @@
 export interface Irequest {
     requestId: string;
     requestedBy: string;
-    requestedDate: string;
+    requestedDate: Date;
     purpose: string;
     description: string;
     approver: string;

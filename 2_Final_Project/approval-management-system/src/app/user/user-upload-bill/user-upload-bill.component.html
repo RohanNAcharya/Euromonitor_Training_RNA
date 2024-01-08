@@ -90,9 +90,9 @@
                     <div class="submit-cancel-buttons">
                         <div class="submit-button">
                             <button mat-raised-button [ngStyle]="{'background-color': '#004d00', 'color': 'white'}"
-                                type="submit">Submit</button>
+                                type="submit">{{request.uploadStatus ? 'Update' : 'Submit'}}</button>
                         </div>
-                        <div class="cancel-button">
+                        <div class="cancel-button" *ngIf="!request.uploadStatus">
                             <button mat-raised-button [ngStyle]="{'background-color': '#663d00', 'color': 'white'}"
                             type="button" (click)="onClickCancel()">Cancel</button>
                         </div>

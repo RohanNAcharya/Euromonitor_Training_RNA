@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { CustomValidators } from '../validators/custom-validators.validators';
-import { AuthService } from '../services/auth.service';
+import { CustomValidators } from '../../validators/custom-validators.validators';
+import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr'
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';

@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { GetUserService } from '../services/get-user.service';
-import { RequestsService } from '../services/requests.service';
+import { GetUserService } from '../../services/get-user.service';
+import { RequestsService } from '../../services/requests.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Irequest } from '../interfaces/Irequest';
-import { Iuser } from '../interfaces/Iuser';
+import { Irequest } from '../../interfaces/Irequest';
+import { Iuser } from '../../interfaces/Iuser';
 
 
 @Component({

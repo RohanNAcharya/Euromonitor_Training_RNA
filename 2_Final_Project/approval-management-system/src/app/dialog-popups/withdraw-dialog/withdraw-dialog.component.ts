@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Irequest } from '../interfaces/Irequest';
-import { RequestsService } from '../services/requests.service';
+import { Irequest } from '../../interfaces/Irequest';
+import { RequestsService } from '../../services/requests.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

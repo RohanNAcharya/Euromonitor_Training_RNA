@@ -3,8 +3,8 @@ import { RequestsService } from '../../services/requests.service';
 import { GetUserService } from '../../services/get-user.service';
 import { Irequest } from '../../interfaces/Irequest';
 import { MatDialog } from '@angular/material/dialog';
-import { EditRequestComponent } from '../../edit-request/edit-request.component';
-import { WithdrawDialogComponent } from '../../withdraw-dialog/withdraw-dialog.component';
+import { EditRequestComponent } from '../../dialog-popups/edit-request/edit-request.component';
+import { WithdrawDialogComponent } from '../../dialog-popups/withdraw-dialog/withdraw-dialog.component';
 import { Router } from '@angular/router';
 import { Iuser } from '../../interfaces/Iuser';
 

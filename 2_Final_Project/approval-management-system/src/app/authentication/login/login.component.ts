@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { CustomValidators } from '../validators/custom-validators.validators';
-import { Iuser } from '../interfaces/Iuser';
+import { CustomValidators } from '../../validators/custom-validators.validators';
+import { Iuser } from '../../interfaces/Iuser';
 
 
 @Component({

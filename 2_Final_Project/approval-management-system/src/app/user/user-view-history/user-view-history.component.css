@@ -40,12 +40,15 @@
 
 .filter-items-container{
     display: flex;
-    width: 600px;
+    width: 800px;
     justify-content: space-between;
     margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.generate-button{
+.generate-button,
+.reset-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,4 +56,9 @@
 
 .form-field{
     margin-top: -10px;
+}
+
+.requests-table-container{
+    margin-left: 20px;
+    margin-right: 20px;
 }

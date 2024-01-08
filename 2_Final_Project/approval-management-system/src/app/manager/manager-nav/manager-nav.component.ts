@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LogoutDialogComponent } from '../../dialog-popups/logout-dialog/logout-dialog.component';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Iuser } from '../../interfaces/Iuser';
+import { LogoutDialogComponent } from '../../dialog-popups/logout-dialog/logout-dialog.component';
 
 @Component({
-  selector: 'app-user-nav',
-  templateUrl: './user-nav.component.html',
-  styleUrl: './user-nav.component.css'
+  selector: 'app-manager-nav',
+  templateUrl: './manager-nav.component.html',
+  styleUrl: './manager-nav.component.css'
 })
-export class UserNavComponent implements OnInit{
+export class ManagerNavComponent {
   public currentUser!: Iuser;
   public currentUserName!: string; 
 
