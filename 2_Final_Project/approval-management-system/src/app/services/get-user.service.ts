@@ -18,4 +18,9 @@ export class GetUserService {
     const params = new HttpParams().set('role', 'manager');
     return this.http.get<Iuser[]>(this.apiurl, { params });
   }
+
+  public getAllUsers(): Observable<Iuser[]>{
+    const params = new HttpParams().set('role', 'employee');
+    return this.http.get<Iuser[]>(this.apiurl, { params });
+  }
 }

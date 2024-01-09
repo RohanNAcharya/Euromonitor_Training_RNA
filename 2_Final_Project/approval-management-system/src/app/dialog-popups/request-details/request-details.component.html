@@ -1,0 +1,55 @@
+<div class="card">
+    <mat-card>
+        <mat-card-header class="centered-header">
+            <h1><b>Request Details</b></h1>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="details-and-buttons">
+                <div class="details">
+                    <div class="left">
+                        <div class="request-id"><b>Request ID: </b><p>{{currentRequest.requestId | uppercase}}</p></div>
+                        <div class="requester"><b>Requested By: </b><p>{{dialogData.requesterName}}</p></div>
+                        <div class="contact"><b>Requester Contact: </b><p>+91{{dialogData.requesterContact}}</p></div>
+                        <div class="purpose"><b>Purpose: </b><p>{{currentRequest.purpose}}</p></div>
+                        <div class="description"><b>Description: </b><p>{{currentRequest.description}}</p></div>
+                    </div>
+                    <div class="right">
+                        <div class="estimated-cost"><b>Estimated Amount: </b><p>{{currentRequest.estimatedCost | currency:'INR'}}</p></div>
+                        <div class="advance-amount"><b>Advance Amount: </b><p>{{currentRequest.advanceAmount | currency:'INR'}}</p></div>
+                        <div class="plan-date"><b>Plan Date: </b><p>{{currentRequest.planDate | date}}</p></div>
+                        <ng-container *ngIf="currentRequest.spentAmount !==''">
+                            <div class="spent-amount"><b>Spent Amount: </b><p>{{currentRequest.spentAmount | currency:'INR'}}</p></div>
+                            <div class="download"><b>Download Documents: </b><button mat-raised-button [ngStyle]="{'background-color': '#000099', 'color': 'white', 'width': '110px'}">Download</button></div>
+                        </ng-container>
+                        <div class="text-field-container">
+                            <ng-container *ngIf="currentRequest.approvalStatus==='initiated'; else approverComments">
+                                <label>Comments: </label>
+                                <textarea rows="4" cols="40" [(ngModel)]="comments"></textarea>
+                            </ng-container>
+                            <ng-template #approverComments>
+                                <label>Your Comments: </label>
+                                <p>{{currentRequest.approverComments}}</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <ng-container *ngIf="currentRequest.approvalStatus==='initiated'; else approvalStatus">
+                        <div class="approve-button">
+                            <button mat-raised-button [ngStyle]="{'background-color': '#378016', 'color': 'white', 'width': '110px'}" (click)="onApproveButtonCicked()">Approve</button>
+                        </div>
+                        <div class="reject-button">
+                            <button mat-raised-button [ngStyle]="{'background-color': '#b82f25', 'color': 'white', 'width': '110px'}" (click)="onRejectButtonCicked()">Reject</button>
+                        </div>
+                    </ng-container>
+                    <ng-template #approvalStatus>
+                        <button mat-raised-button [ngStyle]="{'color': 'white', 'width': '110px'}" [ngClass]="{'background-color': currentRequest.approvalStatus === 'approved' ? '#378016' : '#b82f25' }">{{currentRequest.approvalStatus | uppercase}}</button>
+                    </ng-template>
+                    <div class="cancel-button">
+                        <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white', 'width': '110px'}" (click)="closeDialog()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

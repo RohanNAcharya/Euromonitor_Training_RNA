@@ -36,9 +36,6 @@ export class UserViewHistoryComponent implements OnInit {
     this.getAllRequests();
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
 
   public getAllManagers(): void {
     this.getUserService.getAllManagers().subscribe({
@@ -83,6 +80,8 @@ export class UserViewHistoryComponent implements OnInit {
   }
 
   public resetFilter(): void {
+    this.fromDate = null;
+    this.toDate = null;
     this.dataSource = new MatTableDataSource<Irequest>(this.currentUserRequests);
     this.dataSource.paginator = this.paginator;
   } 

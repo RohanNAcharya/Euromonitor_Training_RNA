@@ -1,0 +1,123 @@
+.header-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.header-container p {
+    font-size: 35px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.filter-container{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+}
+
+.radio-group {
+    display: flex;
+    align-items: baseline;
+    font-size: 26px;
+}
+
+.all-requests {
+    background-color: #333333;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.request-details-container {
+    margin-bottom: 20px;
+}
+
+.upper-request-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000066;
+}
+
+.request-id{
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 15px;
+    margin-right: -230px;
+    background-color: #464670;
+}
+
+.request-id p{
+    font-size: 16px;
+}
+
+.lower-request-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+.purpose{
+    margin-top: 5px;
+    width: 340px;
+    height: 2.4em;
+    font-size: 18px;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.text-container {
+    width: 340px;
+    height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.approve-reject-button,
+.amount-date{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.estimated-amount,
+.advance-amount,
+.plan-date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    flex-grow: 1; 
+    font-size: 12px;
+}
+
+.plan-date,
+.advance-amount{
+    margin-left: 10px;
+}

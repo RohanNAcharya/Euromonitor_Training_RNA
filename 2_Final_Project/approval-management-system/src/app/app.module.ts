@@ -23,6 +23,9 @@ import { WithdrawDialogComponent } from './dialog-popups/withdraw-dialog/withdra
 import { UserUploadBillComponent } from './user/user-upload-bill/user-upload-bill.component';
 import { FormsModule } from '@angular/forms';
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
+import { ManagerAllRequestsComponent } from './manager/manager-all-requests/manager-all-requests.component';
+import { ManagerLatestRequestsComponent } from './manager/manager-latest-requests/manager-latest-requests.component';
+import { RequestDetailsComponent } from './dialog-popups/request-details/request-details.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { ManagerHomeComponent } from './manager/manager-home/manager-home.compon
     WithdrawDialogComponent,
     UserUploadBillComponent,
     ManagerHomeComponent,
+    ManagerAllRequestsComponent,
+    ManagerLatestRequestsComponent,
+    RequestDetailsComponent,
   ],
   imports: [
     BrowserModule,

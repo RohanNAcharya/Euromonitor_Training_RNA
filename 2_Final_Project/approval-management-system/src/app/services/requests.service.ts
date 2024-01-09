@@ -35,6 +35,12 @@ export class RequestsService {
     return this.http.put<Irequest>(url, request)
   }
 
+  public getRequestsByApprover(username: string): Observable<Irequest[]>{
+    const params = new HttpParams()
+                        .set('approver', username);
+    return this.http.get<Irequest[]>(`${this.requests_apiurl}`, { params });
+  }
+
   public updateRequestId(requestId: number): string{
     let finalReqId!:string;
     (requestId<100) ? 

@@ -1,9 +1,9 @@
 <mat-toolbar [ngStyle]="{'background-color': 'black', 'color': 'white'}">
     <div class="left-end">
-        <button mat-icon-button class="home-button" routerLink="manager-my-requests" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">
+        <button mat-icon-button class="home-button" routerLink="manager-home/manager-all-requests" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">
             <mat-icon>home</mat-icon>
         </button>
-        <a routerLink="" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Latest Requests</a>
+        <a routerLink="manager-home/manager-all-requests" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Latest Requests</a>
         <a routerLink="" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">Request</a>
         <a routerLink="" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">My Requests</a>
         <a routerLink="user-view-history" [routerLinkActive]="'active'" [routerLinkActiveOptions] = "{exact : true}">View History</a>    

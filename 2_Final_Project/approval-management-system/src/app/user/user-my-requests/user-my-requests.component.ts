@@ -50,7 +50,7 @@ export class UserMyRequestsComponent implements OnInit{
   public getAllRequests(): void {
     this.requestService.getRequests(this.currentUsername.toLowerCase()).subscribe({
       next: (data) =>{
-        this.currentUserRequests = data.reverse().filter(requests => !requests.withdrawn)
+        this.currentUserRequests = data.reverse().filter(requests => !requests.withdrawn);
         console.log(this.currentUserRequests);
       }
     })

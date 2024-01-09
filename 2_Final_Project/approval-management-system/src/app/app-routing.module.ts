@@ -11,6 +11,8 @@ import { UserViewHistoryComponent } from './user/user-view-history/user-view-his
 import { CanActivateUser } from './guards/auth.guard';
 import { UserUploadBillComponent } from './user/user-upload-bill/user-upload-bill.component';
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
+import { ManagerAllRequestsComponent } from './manager/manager-all-requests/manager-all-requests.component';
+import { ManagerLatestRequestsComponent } from './manager/manager-latest-requests/manager-latest-requests.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -24,8 +26,9 @@ const routes: Routes = [
     {path: 'user-upload-bill', component: UserUploadBillComponent, /*canActivate: [CanActivateUser]*/}
   ]},
   {path: 'manager-home', component: ManagerHomeComponent, children: [
-    {path: 'manager-request-form', component: UserRequestFormComponent, /*canActivate: [CanActivateUser]*/},
-    {path: '', redirectTo: 'manager-request-form', pathMatch: 'full'},
+    {path: 'manager-all-requests', component: ManagerAllRequestsComponent, /*canActivate: [CanActivateUser]*/},
+    {path: '', redirectTo: 'manager-all-requests', pathMatch: 'full'},
+    {path: 'manager-latest-requests', component: ManagerLatestRequestsComponent, /*canActivate: [CanActivateUser]*/},
   ]}
 ];
 
