@@ -29,6 +29,10 @@ const routes: Routes = [
     {path: 'manager-all-requests', component: ManagerAllRequestsComponent, /*canActivate: [CanActivateUser]*/},
     {path: '', redirectTo: 'manager-all-requests', pathMatch: 'full'},
     {path: 'manager-latest-requests', component: ManagerLatestRequestsComponent, /*canActivate: [CanActivateUser]*/},
+    {path: 'manager-request-form', component: UserRequestFormComponent, /*canActivate: [CanActivateUser]*/},
+    {path: 'manager-my-requests', component: UserMyRequestsComponent, /*canActivate: [CanActivateUser]*/},
+    {path: 'manager-view-history', component: UserViewHistoryComponent, /*canActivate: [CanActivateUser]*/},
+    {path: 'manager-upload-bill', component: UserUploadBillComponent, /*canActivate: [CanActivateUser]*/}
   ]}
 ];
 

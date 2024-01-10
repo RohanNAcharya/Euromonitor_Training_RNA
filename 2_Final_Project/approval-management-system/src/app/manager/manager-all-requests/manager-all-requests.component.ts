@@ -5,6 +5,8 @@ import { GetUserService } from '../../services/get-user.service';
 import { RequestsService } from '../../services/requests.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestDetailsComponent } from '../../dialog-popups/request-details/request-details.component';
+import { ApproveDialogComponent } from '../../dialog-popups/approve-dialog/approve-dialog.component';
+import { RejectDialogComponent } from '../../dialog-popups/reject-dialog/reject-dialog.component';
 
 @Component({
   selector: 'app-manager-all-requests',
@@ -27,11 +29,11 @@ export class ManagerAllRequestsComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+    this.filteredString = "initiated";
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
     this.currentUsername = this.currentUser!.username;
     this.getAllRequesters();
     this.getAllRequests();
-    
   }
 
   public getAllRequesters(): void {
@@ -50,7 +52,7 @@ export class ManagerAllRequestsComponent implements OnInit{
     this.requestsService.getRequestsByApprover(this.currentUsername.toLowerCase()).subscribe({
       next: (requests) => {
         this.allRequestsForApproval = requests.reverse().filter(requests => !requests.withdrawn);
-        this.filteredRequests = this.allRequestsForApproval;
+        this.filteredRequests = this.allRequestsForApproval.filter(request => request.approvalStatus === this.filteredString);
       } 
     });
   }
@@ -70,6 +72,32 @@ export class ManagerAllRequestsComponent implements OnInit{
       request: request,
       requesterName: requesterName,
       requesterContact: requesterContact
+    } });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if(val){
+          this.filterRequests();
+        }
+      }
+    })
+  }
+
+  public openApproveDialog(request: Irequest): void {
+    const dialogRef = this.dialog.open(ApproveDialogComponent, { data: {
+      request: request
+    } });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if(val){
+          this.filterRequests();
+        }
+      }
+    })
+  }
+
+  public openRejectDialog(request: Irequest): void {
+    const dialogRef = this.dialog.open(RejectDialogComponent, { data: {
+      request: request
     } });
     dialogRef.afterClosed().subscribe({
       next: (val) => {

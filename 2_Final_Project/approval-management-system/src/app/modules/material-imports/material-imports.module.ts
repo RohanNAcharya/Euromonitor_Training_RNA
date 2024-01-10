@@ -14,6 +14,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -33,7 +35,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTooltipModule,
+    MatBadgeModule
   ]
 })
 export class MaterialImportsModule { }

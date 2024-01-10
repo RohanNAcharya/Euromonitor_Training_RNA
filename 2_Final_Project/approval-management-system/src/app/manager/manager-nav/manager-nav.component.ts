@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Iuser } from '../../interfaces/Iuser';
 import { LogoutDialogComponent } from '../../dialog-popups/logout-dialog/logout-dialog.component';
+import { RequestsService } from '../../services/requests.service';
+import { Irequest } from '../../interfaces/Irequest';
+import { GetUserService } from '../../services/get-user.service';
 
 @Component({
   selector: 'app-manager-nav',
@@ -14,12 +17,16 @@ import { LogoutDialogComponent } from '../../dialog-popups/logout-dialog/logout-
 export class ManagerNavComponent {
   public currentUser!: Iuser;
   public currentUserName!: string; 
+  public latestRequestsCount: number = 0;
+  public lastLogoutTime!: Date | null;
 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService,
+    private getUserService: GetUserService,
+    private requestsService: RequestsService
     ){}
 
   ngOnInit(): void {
@@ -28,6 +35,8 @@ export class ManagerNavComponent {
       this.currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
       + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
     }
+    
+    this.getCurrentUserDetails();
   }
 
   public openLogoutDialog(): void{
@@ -35,11 +44,55 @@ export class ManagerNavComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
-        this.authService.loggedIn = false;
-        sessionStorage.clear();
-        this.router.navigate(['/login']);
-        this.toastr.success('Logged out Successfully!');
+        this.authService.updateUserLogoutTime(this.currentUser.username, new Date()).subscribe({
+          next: () => {
+            this.authService.loggedIn = false;
+            sessionStorage.clear();
+            this.router.navigate(['/login']);
+            this.toastr.success('Logged out Successfully!');
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
       }
     })
+  }
+
+  public getCurrentUserDetails(): void {
+    this.getUserService.getUserByUsername(this.currentUser.username).subscribe({
+      next: (user:Iuser) => {
+        this.lastLogoutTime = user.lastLogoutTime ? new Date(user.lastLogoutTime!) : null;
+        this.getRequestsForApproval();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  public getRequestsForApproval(): void {
+    this.requestsService.getRequestsByApprover(this.currentUser.username).subscribe({
+      next: (requests:Irequest[]) => {
+        const currentDateTime = new Date();
+        console.log(requests)
+        let latestRequests = requests.filter((request) => {
+          const requestDate = new Date(request.requestedDate);
+          return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated'
+        })
+        this.latestRequestsCount = latestRequests.length;
+        console.log("this.latestRequestsCount");
+        console.log(latestRequests);
+        console.log(this.latestRequestsCount);
+        console.log("this.latestRequestsCount");
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  public checkLatestRequestsCount(): void {
+    this.getRequestsForApproval()
   }
 }

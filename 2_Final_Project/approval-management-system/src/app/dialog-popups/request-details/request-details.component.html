@@ -28,7 +28,7 @@
                             </ng-container>
                             <ng-template #approverComments>
                                 <label>Your Comments: </label>
-                                <p>{{currentRequest.approverComments}}</p>
+                                <p>{{(currentRequest.approverComments === '') ? 'NO COMMENTS FOUND!' : currentRequest.approverComments}}</p>
                             </ng-template>
                         </div>
                     </div>
@@ -43,10 +43,14 @@
                         </div>
                     </ng-container>
                     <ng-template #approvalStatus>
-                        <button mat-raised-button [ngStyle]="{'color': 'white', 'width': '110px'}" [ngClass]="{'background-color': currentRequest.approvalStatus === 'approved' ? '#378016' : '#b82f25' }">{{currentRequest.approvalStatus | uppercase}}</button>
+                        <p
+                            [ngStyle]="{'color': 'white', 'width': '110px'}" 
+                            [ngClass]="{'approved': currentRequest.approvalStatus === 'approved', 'rejected': currentRequest.approvalStatus === 'rejected'}">
+                                {{currentRequest.approvalStatus | uppercase}}
+                    </p>
                     </ng-template>
                     <div class="cancel-button">
-                        <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white', 'width': '110px'}" (click)="closeDialog()">Cancel</button>
+                        <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white', 'width': '110px'}" (click)="closeDialog()">Close</button>
                     </div>
                 </div>
             </div>

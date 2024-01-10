@@ -1,0 +1,21 @@
+<div class="card">
+    <mat-card>
+        <mat-card-header class="centered-header">
+            <h1><b>Confirm Approval</b></h1>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="comment-section">
+                <h2>Add Comments(Optional): </h2>
+                <textarea rows="8" cols="60" [(ngModel)]="comments"></textarea>
+            </div>
+            <div class="approve-cancel-button">
+                <div class="approve-button">
+                    <button mat-raised-button [ngStyle]="{'background-color': '#b82f25', 'color': 'white', 'width': '110px'}" (click)="onRejectButtonCicked()">Reject</button>
+                </div>
+                <div class="cancel-button">
+                    <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white', 'width': '110px'}" (click)="closeDialog()">Close</button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

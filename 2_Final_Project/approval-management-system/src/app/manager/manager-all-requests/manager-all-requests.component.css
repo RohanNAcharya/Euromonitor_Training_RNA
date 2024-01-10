@@ -121,3 +121,26 @@
 .advance-amount{
     margin-left: 10px;
 }
+
+.approval-status-message{
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    margin-right: -30px;
+}
+.approved, 
+.rejected {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 25px;
+    margin-bottom: -5px;
+}
+
+.approved {
+    background-color: #378016;
+}
+
+.rejected {
+    background-color: #b82f25;
+}
+  

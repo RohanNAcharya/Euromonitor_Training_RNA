@@ -1,0 +1,23 @@
+.card{
+    width: 540px;
+}
+
+.centered-header {
+    display: flex;
+    justify-content: center;
+}
+
+.approve-cancel-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.approve-button{
+    margin-right: 10px;
+}
+
+textarea{
+    padding: 10px 10px;
+    font-size: 14px;
+}

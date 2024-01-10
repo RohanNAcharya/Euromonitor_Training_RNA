@@ -26,6 +26,8 @@ import { ManagerHomeComponent } from './manager/manager-home/manager-home.compon
 import { ManagerAllRequestsComponent } from './manager/manager-all-requests/manager-all-requests.component';
 import { ManagerLatestRequestsComponent } from './manager/manager-latest-requests/manager-latest-requests.component';
 import { RequestDetailsComponent } from './dialog-popups/request-details/request-details.component';
+import { ApproveDialogComponent } from './dialog-popups/approve-dialog/approve-dialog.component';
+import { RejectDialogComponent } from './dialog-popups/reject-dialog/reject-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { RequestDetailsComponent } from './dialog-popups/request-details/request
     ManagerAllRequestsComponent,
     ManagerLatestRequestsComponent,
     RequestDetailsComponent,
+    ApproveDialogComponent,
+    RejectDialogComponent
   ],
   imports: [
     BrowserModule,

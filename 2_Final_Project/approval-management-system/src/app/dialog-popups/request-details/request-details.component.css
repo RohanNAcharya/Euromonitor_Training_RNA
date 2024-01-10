@@ -105,3 +105,19 @@ textarea{
     justify-content: baseline;
     font-weight: bold;
 }
+
+.approved, 
+.rejected {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+}
+
+.approved {
+    background-color: #378016;
+}
+
+.rejected {
+    background-color: #b82f25;
+}
+  

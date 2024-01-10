@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Iuser } from '../interfaces/Iuser';
-import { Observable, forkJoin, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +33,18 @@ export class AuthService {
                         .set('role', role);
                     
     return this.http.get<Iuser[]>(`${this.apiurl}`, { params });
+  }
+
+  public updateUserLogoutTime(username:string, logoutTime: Date): Observable<Iuser[]>{
+    const params = new HttpParams()
+                        .set('username', username);
+
+    return this.http.get<Iuser[]>(`${this.apiurl}`, { params }).pipe(
+      switchMap((user: Iuser[]) => {
+        user[0].lastLogoutTime = user[0].lastLogoutTime || "";
+        user[0].lastLogoutTime = String(logoutTime);
+        return this.http.put<Iuser[]>(`${this.apiurl}/${user[0].id}`, user[0]);
+      })
+    ) 
   }
 }

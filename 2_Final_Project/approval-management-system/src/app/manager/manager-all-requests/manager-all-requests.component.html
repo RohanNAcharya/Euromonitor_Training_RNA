@@ -5,9 +5,9 @@
     <div class="filter-container">
         <mat-card [ngStyle]="{'padding-right': '30px', 'margin-bottom': '20px'}">
             <mat-card-content>
-                <mat-radio-group  [ngStyle]="{'margin-left': '20px'}" [(ngModel)]="filteredString" (change)="onFilterChange()">
+                <mat-radio-group  [ngStyle]="{'margin-left': '20px'}" [(ngModel)]="filteredString" (ngModelChange)="onFilterChange()">
                     <mat-radio-button value="all">All</mat-radio-button>
-                    <mat-radio-button value="initiated">Initiated</mat-radio-button>
+                    <mat-radio-button value="initiated" checked>Initiated</mat-radio-button>
                     <mat-radio-button value="approved">Approved</mat-radio-button>
                     <mat-radio-button value="rejected">Rejected</mat-radio-button>
                 </mat-radio-group>
@@ -15,52 +15,77 @@
         </mat-card>
     </div>
     <div class="all-requests">
-        <div class="request-details-container" *ngFor="let request of filteredRequests">
-            <mat-card [ngStyle]="{'width': '380px', 'height': '480px'}">
-                <mat-card-content>
-                    <div class="request-body">
-                        <div class="upper-request-body" [ngStyle]="{'background-color': '#082752', 'color': 'white'}">
-                            <div class="request-id"><p>{{request.requestId | uppercase}}</p></div>
-                            <img src="assets/user-upload-bill-assets/person.png" alt="Image" style="max-width: 30%; max-height: 30%;">
-                            <p style="font-size: 17px;">{{allRequesters[request.requestedBy]}}</p>
-                            <p class="phone-no">+91{{allRequestersContact[request.requestedBy]}}</p>
+        <ng-container *ngIf="filteredRequests.length; else noRequests">
+            <div class="request-details-container" *ngFor="let request of filteredRequests">
+                <mat-card [ngStyle]="{'width': '380px', 'height': '480px'}">
+                    <mat-card-content>
+                        <div class="request-body">
+                            <div class="upper-request-body" [ngStyle]="{'background-color': '#082752', 'color': 'white'}">
+                                <div class="request-id"><p>{{request.requestId | uppercase}}</p></div>
+                                <img src="assets/user-upload-bill-assets/person.png" alt="Image" style="max-width: 30%; max-height: 30%;">
+                                <p style="font-size: 17px;">{{allRequesters[request.requestedBy]}}</p>
+                                <p class="phone-no">+91{{allRequestersContact[request.requestedBy]}}</p>
+                            </div>
+        
+                            <div class="lower-request-body">
+                                <p class="purpose">{{request.purpose}}</p>
+                                <div class="text-container">
+                                    <p>{{request.description}}</p>
+                                </div>
+                                <div class="amount-date">
+                                    <div class="estimated-amount">
+                                        <p style="font-size: 15px">{{request.estimatedCost | currency: 'INR'}}</p>
+                                        <p style="margin-top: -10px; font-weight: bold; width: 110px;">Estimated Amount</p>
+                                    </div>
+                                    <div class="advance-amount">
+                                        <p style="font-size: 15px">{{request.advanceAmount | currency: 'INR'}}</p>
+                                        <p style="margin-top: -10px; font-weight: bold; width: 110px;">Advance Amount</p>
+                                    </div>
+                                    <div class="plan-date">
+                                        <p style="font-size: 15px">{{request.planDate | date}}</p>
+                                        <p style="margin-top: -10px; font-weight: bold; width: 110px;">Plan Date</p>
+                                    </div>
+                                </div>
+        
+                                <div class="approve-reject-button">
+                                    <ng-container *ngIf="request.approvalStatus==='initiated'; else approvalStatusMessage">
+                                        <div class="approve-button">
+                                            <button mat-raised-button [ngStyle]="{'background-color': '#378016', 'color': 'white', 'width': '110px'}" (click)="openApproveDialog(request)">Approve</button>
+                                        </div>
+                                        <div class="reject-button">
+                                            <button mat-raised-button [ngStyle]="{'background-color': '#b82f25', 'color': 'white', 'width': '110px'}" (click)="openRejectDialog(request)">Reject</button>
+                                        </div>
+                                    </ng-container>
+                                    <ng-template #approvalStatusMessage>
+                                        <div class="approval-status-message">
+                                            <p
+                                            [ngStyle]="{'color': 'white', 'width': '110px', 'font-size': '15px', 'align-text': 'center'}" 
+                                            [ngClass]="{'approved': request.approvalStatus === 'approved', 'rejected': request.approvalStatus === 'rejected'}"
+                                            >{{request.approvalStatus | uppercase}}</p>
+                                        </div>
+                                    </ng-template>
+                                    <div class="view-details-button">
+                                        <button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white', 'width': '110px'}" (click)="openRequestDetails(request, allRequesters[request.requestedBy], allRequestersContact[request.requestedBy])">Details</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-    
-                        <div class="lower-request-body">
-                            <p class="purpose">{{request.purpose}}</p>
-                            <div class="text-container">
-                                <p>{{request.description}}</p>
-                            </div>
-                            <div class="amount-date">
-                                <div class="estimated-amount">
-                                    <p style="font-size: 15px">{{request.estimatedCost | currency: 'INR'}}</p>
-                                    <p style="margin-top: -10px; font-weight: bold; width: 110px;">Estimated Amount</p>
-                                </div>
-                                <div class="advance-amount">
-                                    <p style="font-size: 15px">{{request.advanceAmount | currency: 'INR'}}</p>
-                                    <p style="margin-top: -10px; font-weight: bold; width: 110px;">Advance Amount</p>
-                                </div>
-                                <div class="plan-date">
-                                    <p style="font-size: 15px">{{request.planDate | date}}</p>
-                                    <p style="margin-top: -10px; font-weight: bold; width: 110px;">Plan Date</p>
-                                </div>
-                            </div>
-    
-                            <div class="approve-reject-button">
-                                <div class="approve-button">
-                                    <button mat-raised-button [ngStyle]="{'background-color': '#378016', 'color': 'white', 'width': '110px'}">Approve</button>
-                                </div>
-                                <div class="reject-button">
-                                    <button mat-raised-button [ngStyle]="{'background-color': '#b82f25', 'color': 'white', 'width': '110px'}">Reject</button>
-                                </div>
-                                <div class="view-details-button">
-                                    <button mat-raised-button [ngStyle]="{'background-color': '#505062', 'color': 'white', 'width': '110px'}" (click)="openRequestDetails(request, allRequesters[request.requestedBy], allRequestersContact[request.requestedBy])">Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </ng-container>
     </div>
+    <ng-template #noRequests>
+        <mat-card [ngStyle]="{'width': '100%', 'margin-right': '20px', 'margin-bottom': '20px'}">
+            <mat-card-content [ngStyle]="{'display': 'flex', 'justify-content': 'center'}">
+                <h1 style="color: red">
+                    {{ (filteredString === 'all') ? 
+                        'No Requests' : (filteredString === 'initiated') ? 
+                                            'No Initiated Requests' : (filteredString === 'approved') ? 
+                                                                        'No Approved Requests' : 'No Rejected Requests'
+                      }}
+                </h1>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
 </div>
