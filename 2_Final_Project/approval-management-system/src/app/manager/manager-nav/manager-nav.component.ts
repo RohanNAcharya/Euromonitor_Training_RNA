@@ -8,6 +8,7 @@ import { LogoutDialogComponent } from '../../dialog-popups/logout-dialog/logout-
 import { RequestsService } from '../../services/requests.service';
 import { Irequest } from '../../interfaces/Irequest';
 import { GetUserService } from '../../services/get-user.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-manager-nav',
@@ -26,15 +27,20 @@ export class ManagerNavComponent {
     private router: Router,
     private toastr: ToastrService,
     private getUserService: GetUserService,
-    private requestsService: RequestsService
+    private requestsService: RequestsService,
+    private localStorageService:LocalStorageService
     ){}
 
   ngOnInit(): void {
-    if(sessionStorage !== undefined){
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+    // if(sessionStorage !== undefined){
+    //   this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+    //   this.currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
+    //   + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
+    // }
+
+      this.currentUser = this.localStorageService.getUserItem('currentUser');
       this.currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
       + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
-    }
     
     this.getCurrentUserDetails();
   }
@@ -47,7 +53,8 @@ export class ManagerNavComponent {
         this.authService.updateUserLogoutTime(this.currentUser.username, new Date()).subscribe({
           next: () => {
             this.authService.loggedIn = false;
-            sessionStorage.clear();
+            // sessionStorage.clear();
+            this.localStorageService.clear();
             this.router.navigate(['/login']);
             this.toastr.success('Logged out Successfully!');
           },
@@ -81,10 +88,6 @@ export class ManagerNavComponent {
           return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated'
         })
         this.latestRequestsCount = latestRequests.length;
-        console.log("this.latestRequestsCount");
-        console.log(latestRequests);
-        console.log(this.latestRequestsCount);
-        console.log("this.latestRequestsCount");
       },
       error: (err) => {
         console.log(err);

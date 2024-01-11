@@ -20,7 +20,7 @@
 .heading p{
     padding-top: 10px;
     width: 100%;
-    margin-left: 37%;
+    margin-left: 29%;
     font-size: 35px;
     font-weight: bold;
 }
@@ -73,3 +73,10 @@
 .mat-elevation-z8 td{
     font-size: 14px;
 }
+
+.no-data-message {
+    text-align: center;
+    padding: 10px;
+    color: #888;
+}
+  

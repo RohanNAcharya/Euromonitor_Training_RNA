@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Irequest } from '../../interfaces/Irequest';
 import { Iuser } from '../../interfaces/Iuser';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class EditRequestComponent implements OnInit{
 
   public approvalRequestUpdateForm!: FormGroup;
   public allManagers!: Iuser[];
+  public currentUser!: Iuser;
   
   public currencyPattern = /^[0-9]{1,10}(\.[0-9]{1,2})?$/;
 
@@ -25,7 +27,8 @@ export class EditRequestComponent implements OnInit{
     private requestsService: RequestsService,
     private toastr: ToastrService,
     private dialodRef: MatDialogRef<EditRequestComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: { request: Irequest}
+    @Inject(MAT_DIALOG_DATA) public dialogData: { request: Irequest},
+    private localStorageService: LocalStorageService
   ) { 
     this.approvalRequestUpdateForm = new FormGroup({
       purpose: new FormControl(this.dialogData.request ? this.dialogData.request.purpose : null, Validators.required),
@@ -38,9 +41,15 @@ export class EditRequestComponent implements OnInit{
   }
 
   ngOnInit(): void{
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
     this.getUserService.getAllManagers().subscribe({
       next: (users: Iuser[]) => {
-        this.allManagers = users;
+        if(this.currentUser.role === 'manager'){
+          this.allManagers = users.filter(user => user.username!== this.currentUser.username);
+        }
+        else{
+          this.allManagers = users;
+        }
       },
       error: (err) => {
         this.allManagers = [];

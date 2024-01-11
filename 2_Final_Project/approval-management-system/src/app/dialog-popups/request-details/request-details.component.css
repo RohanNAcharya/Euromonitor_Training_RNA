@@ -54,6 +54,7 @@ mat-card{
     font-size: 16px;
 }
 
+.requester-comments p
 .spent-amount p,
 .plan-date p,
 .advance-amount p,
@@ -64,6 +65,7 @@ mat-card{
     margin-left: 10px;
 }
 
+.requester-comments
 .spent-amount,
 .download,
 .spent-amount,
@@ -74,6 +76,15 @@ mat-card{
 .requester,
 .request-id{
     display: flex;
+}
+
+
+.requester-comments{
+    margin-bottom: 10px;
+}
+
+.requester-comments b{
+    margin-top: 8px;
 }
 
 .download button{

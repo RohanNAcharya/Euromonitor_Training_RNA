@@ -7,6 +7,7 @@ import { ApproveDialogComponent } from '../../dialog-popups/approve-dialog/appro
 import { RejectDialogComponent } from '../../dialog-popups/reject-dialog/reject-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestDetailsComponent } from '../../dialog-popups/request-details/request-details.component';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-manager-latest-requests',
@@ -25,11 +26,13 @@ export class ManagerLatestRequestsComponent {
     private getUserService: GetUserService,
     private requestsService: RequestsService,
     private userService: GetUserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private localStorageService: LocalStorageService
   ){}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    // this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
     this.currentUsername = this.currentUser!.username;
     this.getAllRequesters();
     this.getCurrentUserDetails();
@@ -48,11 +51,13 @@ export class ManagerLatestRequestsComponent {
   }
 
   public getAllRequesters(): void {
-    this.userService.getAllUsers().subscribe({
+    this.userService.getAllUsersAndManagers().subscribe({
       next: (requesters) => {
         for(let requester of requesters){
           this.allRequesters[requester.username.toLowerCase()] = requester.firstname[0].toUpperCase() + requester.firstname.slice(1) + ' ' + requester.lastname[0].toUpperCase() + requester.lastname.slice(1);
           this.allRequestersContact[requester.username.toLowerCase()] = requester.contact;
+          console.log(this.allRequesters);
+          console.log(this.allRequestersContact);
         }
       }
     })

@@ -7,6 +7,7 @@ import { RequestsService } from '../../services/requests.service';
 import { concatMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
 // import {}
 
 @Component({
@@ -29,12 +30,15 @@ export class UserUploadBillComponent {
     private fileUploadService:FileUploadService,
     private requestsService: RequestsService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ){}
 
   ngOnInit(){
-    this.request = JSON.parse(sessionStorage.getItem('currentRequest')!)
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    // this.request = JSON.parse(sessionStorage.getItem('currentRequest')!)
+    // this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    this.request = this.localStorageService.getRequestItem('currentRequest');
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
     this.fullName = this.currentUser.firstname[0].toUpperCase() + this.currentUser.firstname.slice(1) + ' ' +
                     this.currentUser.lastname[0].toUpperCase() + this.currentUser.lastname.slice(1)
     this.uploadedFileName = (this.request.uploadStatus) ? this.request.documents.split('/').pop()! : "";
@@ -49,7 +53,6 @@ export class UserUploadBillComponent {
   
     if (inputElement.files && inputElement.files.length > 0) {
       this.file = inputElement.files[0];
-      // console.log(this.file);
     }
   }
 
@@ -92,8 +95,13 @@ export class UserUploadBillComponent {
     }
   }
 
-  onClickBack(){
-    this.router.navigate(['/user-home/user-my-requests']);
-    sessionStorage.removeItem('currentRequest');
+  public onClickBack(): void {
+    if(this.currentUser.role === "employee"){
+      this.router.navigate(["/user-home/user-my-requests"]);
+    }
+    else{
+      this.router.navigate(["/manager-home/manager-my-requests"]);
+    }
+    this.localStorageService.removeItem('currentRequest');
   }
 }

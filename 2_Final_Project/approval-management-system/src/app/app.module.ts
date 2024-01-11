@@ -12,15 +12,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { ManagerNavComponent } from './manager/manager-nav/manager-nav.component';
-import { UserRequestFormComponent } from './user/user-request-form/user-request-form.component';
+import { UserRequestFormComponent } from './shared/user-request-form/user-request-form.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserViewHistoryComponent } from './user/user-view-history/user-view-history.component';
-import { UserMyRequestsComponent } from './user/user-my-requests/user-my-requests.component';
+import { UserMyRequestsComponent } from './shared/user-my-requests/user-my-requests.component';
 import { LogoutDialogComponent } from './dialog-popups/logout-dialog/logout-dialog.component';
 import { EditRequestComponent } from './dialog-popups/edit-request/edit-request.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { WithdrawDialogComponent } from './dialog-popups/withdraw-dialog/withdraw-dialog.component';
-import { UserUploadBillComponent } from './user/user-upload-bill/user-upload-bill.component';
+import { UserUploadBillComponent } from './shared/user-upload-bill/user-upload-bill.component';
 import { FormsModule } from '@angular/forms';
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
 import { ManagerAllRequestsComponent } from './manager/manager-all-requests/manager-all-requests.component';
@@ -28,6 +28,7 @@ import { ManagerLatestRequestsComponent } from './manager/manager-latest-request
 import { RequestDetailsComponent } from './dialog-popups/request-details/request-details.component';
 import { ApproveDialogComponent } from './dialog-popups/approve-dialog/approve-dialog.component';
 import { RejectDialogComponent } from './dialog-popups/reject-dialog/reject-dialog.component';
+import { ManagerViewHistoryComponent } from './manager/manager-view-history/manager-view-history.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RejectDialogComponent } from './dialog-popups/reject-dialog/reject-dial
     ManagerLatestRequestsComponent,
     RequestDetailsComponent,
     ApproveDialogComponent,
-    RejectDialogComponent
+    RejectDialogComponent,
+    ManagerViewHistoryComponent
   ],
   imports: [
     BrowserModule,

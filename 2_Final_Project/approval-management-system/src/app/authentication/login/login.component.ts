@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CustomValidators } from '../../validators/custom-validators.validators';
 import { Iuser } from '../../interfaces/Iuser';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { Iuser } from '../../interfaces/Iuser';
 })
 export class LoginComponent implements OnInit{
 
-  loginForm!:FormGroup;
-  buttonClicked!: string;
+  public loginForm!:FormGroup;
+  public buttonClicked!: string;
   
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ){}
   
   ngOnInit(): void{
@@ -40,11 +42,9 @@ export class LoginComponent implements OnInit{
 
     if(this.buttonClicked === 'user-button')
     {
-      // console.log('Button clicked:', this.buttonClicked);
       this.validateUser(username, password);
     }
     else if(this.buttonClicked === 'manager-button'){
-      // console.log('Button clicked:', this.buttonClicked);
       this.validateManager(username, password);
     }
   }
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit{
 
         if(user && user.length > 0){
           this.authService.loggedIn = true;
-          sessionStorage.setItem('currentUser', JSON.stringify({ username: username, role: 'employee', firstname: user[0].firstname, lastname: user[0].lastname, contact: user[0].contact}));
+          this.localStorageService.setUserItem('currentUser', user[0]);
           this.router.navigate(['/user-home']);
           this.toastr.success('Logged In Successfully!');
         }
@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit{
 
         if(user && user.length > 0){
           this.authService.loggedIn = true;
-          sessionStorage.setItem('currentUser', JSON.stringify({ username: username, role: 'manager', firstname: user[0].firstname, lastname: user[0].lastname, contact: user[0].contact}));
+          this.localStorageService.setUserItem('currentUser', user[0]);
           this.router.navigate(['/manager-home']);
           this.toastr.success('Logged In Successfully!');
         }

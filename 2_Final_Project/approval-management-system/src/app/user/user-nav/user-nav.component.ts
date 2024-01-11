@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Iuser } from '../../interfaces/Iuser';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-user-nav',
@@ -20,14 +21,18 @@ export class UserNavComponent implements OnInit{
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService,
+    private localStorageService: LocalStorageService
     ){}
 
   ngOnInit(): void {
-    if(sessionStorage !== undefined){
-      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+    // if(sessionStorage !== undefined){
+    //   this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+    //   this.currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
+    //   + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
+    // }
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
       this.currentUserName = this.currentUser!.firstname[0] + this.currentUser!.firstname.slice(1) 
       + ' ' + this.currentUser!.lastname[0] + this.currentUser!.lastname.slice(1);
-    }
   }
 
   public openLogoutDialog(): void{
@@ -36,7 +41,8 @@ export class UserNavComponent implements OnInit{
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.authService.loggedIn = false;
-        sessionStorage.clear();
+        // sessionStorage.clear();
+        this.localStorageService.clear();
         this.router.navigate(['/login']);
         this.toastr.success('Logged out Successfully!');
       }

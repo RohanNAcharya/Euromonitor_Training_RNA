@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RequestDetailsComponent } from '../../dialog-popups/request-details/request-details.component';
 import { ApproveDialogComponent } from '../../dialog-popups/approve-dialog/approve-dialog.component';
 import { RejectDialogComponent } from '../../dialog-popups/reject-dialog/reject-dialog.component';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-manager-all-requests',
@@ -25,19 +26,21 @@ export class ManagerAllRequestsComponent implements OnInit{
   constructor(
     private userService: GetUserService,
     private requestsService: RequestsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private localStorageService: LocalStorageService
   ){}
 
   ngOnInit(): void {
     this.filteredString = "initiated";
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    // this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
     this.currentUsername = this.currentUser!.username;
     this.getAllRequesters();
     this.getAllRequests();
   }
 
   public getAllRequesters(): void {
-    this.userService.getAllUsers().subscribe({
+    this.userService.getAllUsersAndManagers().subscribe({
       next: (requesters) => {
         for(let requester of requesters){
           this.allRequesters[requester.username.toLowerCase()] = requester.firstname[0].toUpperCase() + requester.firstname.slice(1) + ' ' + requester.lastname[0].toUpperCase() + requester.lastname.slice(1);

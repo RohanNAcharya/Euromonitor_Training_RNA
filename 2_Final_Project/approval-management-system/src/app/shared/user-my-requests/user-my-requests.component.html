@@ -1,7 +1,7 @@
 <div class="container">
     <div class="header">
         <div class="back-button">
-            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" [routerLink]="'/user-home/user-request-form'">Back</button>
+            <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" (click)="onBackButtonClicked()">Back</button>
         </div>
         <div class="heading">
             <p>View Latest Requests</p>
@@ -66,7 +66,7 @@
                 <mat-card>
                     <mat-card-content class="mat-card-container" [ngStyle]="{'color': 'red'}">
                         <div class="no-requests" style="width:100%; text-align: center">
-                            <h2>No requests found! :(</h2>
+                            <h2>No requests!</h2>
                         </div>
                     </mat-card-content>
                 </mat-card>

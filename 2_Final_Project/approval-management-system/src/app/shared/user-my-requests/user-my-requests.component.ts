@@ -7,6 +7,7 @@ import { EditRequestComponent } from '../../dialog-popups/edit-request/edit-requ
 import { WithdrawDialogComponent } from '../../dialog-popups/withdraw-dialog/withdraw-dialog.component';
 import { Router } from '@angular/router';
 import { Iuser } from '../../interfaces/Iuser';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-user-my-requests',
@@ -25,11 +26,13 @@ export class UserMyRequestsComponent implements OnInit{
     private requestService: RequestsService,
     private getUserService: GetUserService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ){}
 
   ngOnInit(){
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
+    console.log(this.currentUser);
     this.currentUsername = this.currentUser!.username;
     this.getAllManagers();
     this.getAllRequests();
@@ -79,7 +82,16 @@ export class UserMyRequestsComponent implements OnInit{
   }
 
   public onUploadButtonClicked(request: Irequest): void {
-    sessionStorage.setItem('currentRequest', JSON.stringify(request));
+    this.localStorageService.setRequestItem('currentRequest', request);
     this.router.navigate(['user-home/user-upload-bill']);
+  }
+
+  public onBackButtonClicked(): void {
+    if(this.currentUser.role === "employee"){
+      this.router.navigate(["/user-home/user-request-form"]);
+    }
+    else{
+      this.router.navigate(["/manager-home/manager-request-form"]);
+    }
   }
 }

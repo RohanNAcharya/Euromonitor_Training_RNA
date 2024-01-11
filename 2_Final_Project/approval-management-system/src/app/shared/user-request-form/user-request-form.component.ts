@@ -5,6 +5,8 @@ import { GetUserService } from '../../services/get-user.service';
 import { RequestsService } from '../../services/requests.service';
 import { ToastrService } from 'ngx-toastr';
 import { Irequest } from '../../interfaces/Irequest';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-request-form',
@@ -17,20 +19,28 @@ export class UserRequestFormComponent implements OnInit {
   public request!: Irequest;
 
   public currencyPattern = /^[0-9]{1,10}(\.[0-9]{1,2})?$/;
-  public currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
+  public currentUser!: Iuser;
     
   @ViewChild(FormGroupDirective) myForm: FormGroupDirective | undefined;
 
   constructor(
     private getUserService: GetUserService,
     private requestsService: RequestsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.currentUser = this.localStorageService.getUserItem('currentUser');
     this.getUserService.getAllManagers().subscribe({
       next: (users: Iuser[]) => {
-        this.allManagers = users;
+        if(this.currentUser.role === 'manager'){
+          this.allManagers = users.filter(user => user.username!== this.currentUser.username);
+        }
+        else{
+          this.allManagers = users;
+        }
       },
       error: (err) => {
         this.allManagers = [];
@@ -58,6 +68,11 @@ export class UserRequestFormComponent implements OnInit {
         next: () => {
           this.toastr.success("Hey Congrats, Your Request has been sent successfully!");
           this.resetApprovalRequestForm();
+          if(this.currentUser.role === "employee"){
+            this.router.navigate(['/user-home/user-my-requests']);
+          }else{
+            this.router.navigate(['/manager-home/manager-my-requests']);
+          }
         },
         error: () => {
           this.toastr.warning("Error submitting your request. Please try again.");

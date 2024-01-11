@@ -19,6 +19,7 @@
                         <div class="plan-date"><b>Plan Date: </b><p>{{currentRequest.planDate | date}}</p></div>
                         <ng-container *ngIf="currentRequest.spentAmount !==''">
                             <div class="spent-amount"><b>Spent Amount: </b><p>{{currentRequest.spentAmount | currency:'INR'}}</p></div>
+                            <div class="requester-comments"><b [ngStyle]="{'color': (currentRequest.userComments !== '') ? 'black' : 'red' }">Requester Comments: </b><p>{{(currentRequest.userComments !== '') ? currentRequest.userComments : 'No comments from requester.'}}</p></div>
                             <div class="download"><b>Download Documents: </b><button mat-raised-button [ngStyle]="{'background-color': '#000099', 'color': 'white', 'width': '110px'}">Download</button></div>
                         </ng-container>
                         <div class="text-field-container">
@@ -28,7 +29,7 @@
                             </ng-container>
                             <ng-template #approverComments>
                                 <label>Your Comments: </label>
-                                <p>{{(currentRequest.approverComments === '') ? 'NO COMMENTS FOUND!' : currentRequest.approverComments}}</p>
+                                <p [ngStyle]="{'color': (currentRequest.approverComments !== '') ? 'black' : 'red' }">{{(currentRequest.approverComments === '') ? 'NO COMMENTS FOUND!' : currentRequest.approverComments}}</p>
                             </ng-template>
                         </div>
                     </div>

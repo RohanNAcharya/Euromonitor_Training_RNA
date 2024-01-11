@@ -23,7 +23,6 @@ export class RequestDetailsComponent {
     this.currentRequest = this.dialogData.request;
   }
 
-
   public onApproveButtonCicked(): void {
     this.dialogData.request.approvalStatus = "approved";
     this.dialogData.request.approverComments = this.comments;
