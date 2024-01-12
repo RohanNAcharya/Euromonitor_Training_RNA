@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Irequest } from '../../interfaces/Irequest';
 import { RequestsService } from '../../services/requests.service';
 import { ToastrService } from 'ngx-toastr';
+import { FileUploadService } from '../../services/file-upload.service';
 
 @Component({
   selector: 'app-request-details',
@@ -16,6 +17,7 @@ export class RequestDetailsComponent {
 
   constructor(
     private requestsService: RequestsService,
+    private fileRequest: FileUploadService,
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<RequestDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: {request: Irequest, requesterName: string, requesterContact: string}
@@ -49,6 +51,28 @@ export class RequestDetailsComponent {
         this.toastr.warning("Error updating the approval status. Please try again!");
       }
     })
+  }
+
+  public onDownloadButtonClicked(request: Irequest): void {
+    const filename = request.documents.split('/').pop()!;
+    this.fileRequest.downloadFile(filename).subscribe({
+      next: (data: Blob) => {
+        const blob = new Blob([data], {type: 'application/octet-stream'});
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        this.toastr.success("File downloaded successfully.");
+      },
+      error: (err) => {
+        this.toastr.warning("Error downloading file.");
+        console.log(err);
+      }
+    });
   }
 
   public closeDialog(): void {

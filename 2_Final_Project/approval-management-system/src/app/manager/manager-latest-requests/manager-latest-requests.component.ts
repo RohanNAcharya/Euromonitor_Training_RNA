@@ -67,7 +67,7 @@ export class ManagerLatestRequestsComponent {
     this.requestsService.getRequestsByApprover(this.currentUsername).subscribe({
       next: (requests:Irequest[]) => {
         const currentDateTime = new Date();
-        this.latestRequests = requests.filter((request) => {
+        this.latestRequests = requests.reverse().filter((request) => {
           const requestDate = new Date(request.requestedDate);
           return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated'
         })
