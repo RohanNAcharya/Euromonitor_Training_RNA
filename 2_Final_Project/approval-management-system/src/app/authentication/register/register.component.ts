@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit{
   }
 
   public onRegisterFormSubmit(): void {
-    // console.log(this.registerForm);
     let userName = this.registerForm.get('username')!.value;
     this.registerForm.get('username')!.setValue(userName.toLowerCase());
     this.checkUsername(userName.toLowerCase()).subscribe(isTaken => {

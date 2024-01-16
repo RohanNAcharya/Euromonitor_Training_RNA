@@ -36,9 +36,9 @@
                             *Password required.
                         </mat-error>
                         <mat-error *ngIf="loginForm.get('password')!.hasError('noSpaceAllowed') && loginForm.get('password')!.touched">
-                            *Invalid Password!
+                            *Space not allowed.
                         </mat-error>
-                        <mat-error *ngIf="loginForm.get('password')!.hasError('minlength') && loginForm.get('password')!.touched">
+                        <mat-error *ngIf="loginForm.get('password')!.hasError('minlength') && !loginForm.get('password')!.hasError('noSpaceAllowed') && loginForm.get('password')!.touched">
                             *Invalid Password!
                         </mat-error>
                     </mat-form-field>

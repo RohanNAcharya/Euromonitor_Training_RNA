@@ -41,7 +41,7 @@ export class ManagerViewHistoryComponent {
   }
 
   public getAllUsers(): void {
-    this.getUserService.getAllUsers().subscribe({
+    this.getUserService.getAllUsersAndManagers().subscribe({
       next: (users) => {
         for(let user of users){
           this.users[user.username.toLowerCase()] = user.firstname[0].toUpperCase() + user.firstname.slice(1) + ' ' + user.lastname[0].toUpperCase() + user.lastname.slice(1);
@@ -79,9 +79,6 @@ export class ManagerViewHistoryComponent {
 
       this.dataSource = new MatTableDataSource<Irequest>(this.filteredData);
       this.dataSource.paginator = this.paginator;
-      console.log("Datasource")
-      console.log(this.dataSource)
-      console.log("Datasource")
     }
   }
 

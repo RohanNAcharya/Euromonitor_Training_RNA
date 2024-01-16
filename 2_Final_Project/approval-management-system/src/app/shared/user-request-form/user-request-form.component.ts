@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Irequest } from '../../interfaces/Irequest';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
+import { CustomValidators } from '../../validators/custom-validators.validators';
 
 @Component({
   selector: 'app-user-request-form',
@@ -57,7 +58,7 @@ export class UserRequestFormComponent implements OnInit {
       approver: new FormControl(null, Validators.required),
       estimatedCost: new FormControl(null, [Validators.required, Validators.pattern(this.currencyPattern)]),
       advanceAmount: new FormControl(null, [Validators.required, Validators.pattern(this.currencyPattern)]),
-      planDate: new FormControl(null, Validators.required)
+      planDate: new FormControl(null, [Validators.required, CustomValidators.dateError])
     })
   }
 

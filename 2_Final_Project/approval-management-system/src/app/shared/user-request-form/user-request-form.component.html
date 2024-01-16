@@ -72,6 +72,9 @@
                             <mat-error *ngIf="approvalRequestForm.get('planDate')!.hasError('required') && approvalRequestForm.get('planDate')!.touched">
                                 *Plan Date is required.
                             </mat-error>
+                            <mat-error *ngIf="approvalRequestForm.get('planDate')!.hasError('dateError') && !approvalRequestForm.get('planDate')!.hasError('required')">
+                                *Date must be today or later.
+                            </mat-error>
                         </mat-form-field>
                     </div>                        
                 </div>

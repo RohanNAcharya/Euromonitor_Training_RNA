@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Irequest } from '../../interfaces/Irequest';
 import { Iuser } from '../../interfaces/Iuser';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { CustomValidators } from '../../validators/custom-validators.validators';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class EditRequestComponent implements OnInit{
       approver: new FormControl(this.dialogData.request ? this.dialogData.request.approver : null, Validators.required),
       estimatedCost: new FormControl(this.dialogData.request ? this.dialogData.request.estimatedCost : null, [Validators.required, Validators.pattern(this.currencyPattern)]),
       advanceAmount: new FormControl(this.dialogData.request ? this.dialogData.request.advanceAmount : null, [Validators.required, Validators.pattern(this.currencyPattern)]),
-      planDate: new FormControl(this.dialogData.request ? this.dialogData.request.planDate : null, Validators.required)
+      planDate: new FormControl(this.dialogData.request ? this.dialogData.request.planDate : null, [Validators.required, CustomValidators.dateError])
     })
   }
 
