@@ -28,8 +28,8 @@ export class GetUserService {
     return this.http.get<Iuser[]>(this.apiurl);
   }
 
-  public getUserByUsername(username: string): Observable<Iuser>{
+  public getUserByUsername(username: string): Observable<Iuser[]>{
     const params = new HttpParams().set('username', username);
-    return this.http.get<Iuser>(this.apiurl, { params });
+    return this.http.get<Iuser[]>(this.apiurl, { params });
   }
 }

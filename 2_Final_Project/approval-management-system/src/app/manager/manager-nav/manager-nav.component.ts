@@ -68,8 +68,8 @@ export class ManagerNavComponent {
 
   public getCurrentUserDetails(): void {
     this.getUserService.getUserByUsername(this.currentUser.username).subscribe({
-      next: (user:Iuser) => {
-        this.lastLogoutTime = user.lastLogoutTime ? new Date(user.lastLogoutTime!) : null;
+      next: (user:Iuser[]) => {
+        this.lastLogoutTime = user[0].lastLogoutTime ? new Date(user[0].lastLogoutTime!) : null;
         this.getRequestsForApproval();
       },
       error: (err) => {
@@ -85,7 +85,7 @@ export class ManagerNavComponent {
         console.log(requests)
         let latestRequests = requests.filter((request) => {
           const requestDate = new Date(request.requestedDate);
-          return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated'
+          return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated' && !request.withdrawn
         })
         this.latestRequestsCount = latestRequests.length;
       },

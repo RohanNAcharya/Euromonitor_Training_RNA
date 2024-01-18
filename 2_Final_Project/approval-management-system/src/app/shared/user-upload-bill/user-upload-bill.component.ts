@@ -34,7 +34,7 @@ export class UserUploadBillComponent {
     private localStorageService: LocalStorageService
   ){}
 
-  ngOnInit(){
+  ngOnInit(): void {
     // this.request = JSON.parse(sessionStorage.getItem('currentRequest')!)
     // this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')!)
     this.request = this.localStorageService.getRequestItem('currentRequest');
@@ -48,7 +48,7 @@ export class UserUploadBillComponent {
     })
   }            
 
-  getFile(event: Event): void {
+  public getFile(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
   
     if (inputElement.files && inputElement.files.length > 0) {
@@ -56,8 +56,7 @@ export class UserUploadBillComponent {
     }
   }
 
-  onBillFormSubmit(){
-    console.log(this.billUploadForm);
+  public onBillFormSubmit(): void {
     let fileName = this.request.requestId.toUpperCase();
     let path = `F:\/File_Uploads\/uploads\/uploads/`;
     path += this.request.requestId.toUpperCase() + '_' + this.file.name;

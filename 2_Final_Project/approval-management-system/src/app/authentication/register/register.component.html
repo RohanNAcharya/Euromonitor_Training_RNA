@@ -93,9 +93,12 @@
                         </mat-error>
                     </mat-form-field>
                 
-                    <div class="register-button">
+                    <div class="register-login-buttons">
                         <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" type="submit">
                             Register
+                        </button>
+                        <button mat-raised-button [ngStyle]="{'background-color': '#333333', 'color': 'white'}" type="button" [routerLink]="'/login'">
+                            Login
                         </button>
                     </div>
                 </form>

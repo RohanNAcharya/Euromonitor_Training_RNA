@@ -40,8 +40,8 @@ export class ManagerLatestRequestsComponent {
 
   public getCurrentUserDetails(): void {
     this.getUserService.getUserByUsername(this.currentUsername).subscribe({
-      next: (user:Iuser) => {
-        this.lastLogoutTime = user.lastLogoutTime ? new Date(user.lastLogoutTime!) : null;
+      next: (user:Iuser[]) => {
+        this.lastLogoutTime = user[0].lastLogoutTime ? new Date(user[0].lastLogoutTime!) : null;
         this.getRequestsForApproval();
       },
       error: (err) => {
@@ -56,8 +56,6 @@ export class ManagerLatestRequestsComponent {
         for(let requester of requesters){
           this.allRequesters[requester.username.toLowerCase()] = requester.firstname[0].toUpperCase() + requester.firstname.slice(1) + ' ' + requester.lastname[0].toUpperCase() + requester.lastname.slice(1);
           this.allRequestersContact[requester.username.toLowerCase()] = requester.contact;
-          console.log(this.allRequesters);
-          console.log(this.allRequestersContact);
         }
       }
     })
@@ -69,7 +67,9 @@ export class ManagerLatestRequestsComponent {
         const currentDateTime = new Date();
         this.latestRequests = requests.reverse().filter((request) => {
           const requestDate = new Date(request.requestedDate);
-          return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated'
+          (requestDate >= this.lastLogoutTime!)? console.log("true") : console.log("false");
+          (requestDate <= currentDateTime)? console.log("true") : console.log("false");
+          return (requestDate >= this.lastLogoutTime! && requestDate <= currentDateTime) && request.approvalStatus === 'initiated' && !request.withdrawn
         })
       },
       error: (err) => {
