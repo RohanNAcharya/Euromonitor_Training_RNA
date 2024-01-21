@@ -127,7 +127,7 @@
       "username": "varshaagarwal96",
       "password": "varvar96",
       "id": 14,
-      "lastLogoutTime": "Wed Jan 17 2024 16:52:44 GMT+0530 (India Standard Time)"
+      "lastLogoutTime": "Sun Jan 21 2024 14:36:03 GMT+0530 (India Standard Time)"
     },
     {
       "firstname": "Brundha",
@@ -194,7 +194,7 @@
       "username": "shikhanambiar",
       "password": "chethan@1999",
       "id": 21,
-      "lastLogoutTime": "Wed Jan 17 2024 13:07:47 GMT+0530 (India Standard Time)"
+      "lastLogoutTime": "Fri Jan 19 2024 15:30:15 GMT+0530 (India Standard Time)"
     },
     {
       "firstname": "Rohith",
@@ -213,6 +213,15 @@
       "username": "rosepark",
       "password": "rose@1999",
       "id": 23
+    },
+    {
+      "firstname": "Brunda",
+      "lastname": "Acchu",
+      "role": "employee",
+      "contact": "9123456789",
+      "username": "brundaacchu",
+      "password": "brunda12345",
+      "id": 24
     }
   ],
   "requests": [
@@ -631,7 +640,7 @@
       "documents": "",
       "uploadStatus": false,
       "requestDate": "",
-      "approvalStatus": "initiated",
+      "approvalStatus": "approved",
       "approverComments": "",
       "withdrawn": false,
       "id": 21
@@ -915,6 +924,66 @@
       "approverComments": "",
       "withdrawn": false,
       "id": 35
+    },
+    {
+      "requestId": "req036",
+      "requestedBy": "brundaacchu",
+      "requestedDate": "2024-01-21T08:44:39.130Z",
+      "purpose": "Team Lunch",
+      "description": "Team Lunch for 20 members",
+      "approver": "varshaagarwal96",
+      "estimatedCost": "50000",
+      "advanceAmount": "20000",
+      "planDate": "2024-01-30T18:30:00.000Z",
+      "spentAmount": "",
+      "userComments": "",
+      "documents": "",
+      "uploadStatus": false,
+      "requestDate": "",
+      "approvalStatus": "rejected",
+      "approverComments": "Rejected!",
+      "withdrawn": false,
+      "id": 36
+    },
+    {
+      "requestId": "req037",
+      "requestedBy": "brundaacchu",
+      "requestedDate": "2024-01-21T08:45:27.106Z",
+      "purpose": "Town hall Q2",
+      "description": "Town hall Q2",
+      "approver": "santhoshnaidu",
+      "estimatedCost": "70000",
+      "advanceAmount": "35000",
+      "planDate": "2024-05-30T18:30:00.000Z",
+      "spentAmount": "",
+      "userComments": "",
+      "documents": "",
+      "uploadStatus": false,
+      "requestDate": "",
+      "approvalStatus": "initiated",
+      "approverComments": "",
+      "withdrawn": true,
+      "id": 37
+    },
+    {
+      "requestId": "req038",
+      "requestedBy": "brundaacchu",
+      "requestedDate": "2024-01-21T08:46:05.140Z",
+      "purpose": "Trip to Pondycherry",
+      "description": "Trip to Pondycherry",
+      "approver": "varshaagarwal96",
+      "estimatedCost": "100000",
+      "advanceAmount": "50000",
+      "planDate": "2024-04-29T18:30:00.000Z",
+      "spentAmount": "60000",
+      "userComments": "Travel expenses exceeded",
+      "documents": "F:/File_Uploads/uploads/uploads/REQ038_backup.txt",
+      "uploadStatus": true,
+      "requestDate": "",
+      "approvalStatus": "approved",
+      "approverComments": "Approved!",
+      "withdrawn": false,
+      "id": 38
     }
   ]
 }
